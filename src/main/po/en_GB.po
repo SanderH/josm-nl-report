@@ -1,0 +1,18 @@
+# Translations for the JOSM plugin 'NL_PDOK_Report' (en_GB)
+# Copyright (C) 2019
+# This file is distributed under the same license as the josm-plugin_NL_PDOK_Report package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: josm-plugin_NL_PDOK_Report v1.5.16-14-g82b2768\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-09-30 10:39+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en_GB\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+

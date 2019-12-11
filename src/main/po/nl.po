@@ -1,0 +1,276 @@
+# Translations for the JOSM plugin 'NL_PDOK_Report' (nl)
+# Copyright (C) 2019
+# This file is distributed under the same license as the josm-plugin_NL_PDOK_Report package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: josm-plugin_NL_PDOK_Report v1.5.16-14-g82b2768\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-09-30 10:39+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "PDOK Reports"
+msgstr "PDOK Terugmeldingen"
+
+msgid "Download mode"
+msgstr "Download mode"
+
+msgid "Unofficial implementation of the PDOK Report API"
+msgstr "Onofficiele implementatie van de PDOK Terugmeldingen API"
+
+msgid "URL of the PDOK report API"
+msgstr "URL voor de PDOK Terugmeldingen API"
+
+msgid "API key for accessing the PDOK report API"
+msgstr "API key voor toegang tot de PDOK Terugmeldingen API"
+
+msgid "Request API key"
+msgstr "API key aanvragen"
+
+msgid "Email address for getting notifications"
+msgstr "E-mail adres voor notificaties"
+
+msgid "Optional organisation for the report"
+msgstr "Optionele organisatie voor de terugmelding"
+
+msgid "Enable experimental beta-features (might be unstable)"
+msgstr "Experimentele beta-functies aanzetten (kan onstabiel zijn)"
+
+msgid "Use acceptance environment"
+msgstr "Gebruik acceptatie omgeving"
+
+msgid "URL of the PDOK Report API (acceptance environment)"
+msgstr "URL voor de PDOK Terugmeldingen API (accaptatie omgeving)"
+
+msgid "API key for accessing the PDOK Report API (acceptance environment)"
+msgstr "API key voor toegang tot de PDOK Terugmeldingen API (acceptatie omgeving)"
+
+msgid "Use Fiddler proxy (on local default port)"
+msgstr "Gebruik Fiddler proxy (op de standaard lokale poort)"
+
+msgid "Select report from other layer"
+msgstr "Selecteer terugmelding vanuit andere laag"
+
+msgid "Validate API key"
+msgstr "Valideer API key"
+
+msgid "Validate acceptance API key"
+msgstr "Valideer acceptatie API key"
+
+#, java-format
+msgid "You are logged in using API KEY ''{0}''."
+msgstr "Je bent ingelogd met API KEY ''{0}''."
+
+msgid "Submit report"
+msgstr "Verstuur terugmelding"
+
+msgid "Submit the current report"
+msgstr "Verstuur de huidige terugmelding"
+
+msgid "Open PDOK Report layer"
+msgstr "Open PDOK Terugmelding laag"
+
+msgid "Download PDOK Reports"
+msgstr "Download PDOK Terugmeldingen"
+
+msgid "Add a new PDOK Report"
+msgstr "Voeg een nieuwe PDOK Terugmelding toe"
+
+msgid "Click the location where you wish to create a new report"
+msgstr "Klik op de locatie waar je de nieuwe terugmelding wilt creëeren"
+
+msgid "Create report"
+msgstr "Maak terugmelding"
+
+msgid "Create a new report"
+msgstr "Maak een nieuwe terugmelding"
+
+msgid "Enter a detailed description to create a report"
+msgstr "Geef een gedetailleerde beschrijving om een terugmelding te maken"
+
+msgid "You must enter a description to create a new report"
+msgstr "Je moet een beschrijving invoeren om een nieuwe terugmelding te maken"
+
+msgid "ATTENTION! Do not enter any privacy-sensitive (personal) data below. The data you enter here will be publicly available via the BAG viewer."
+msgstr "LET OP! Vul hieronder geen privacygevoelige (persoons)gegevens in. De gegevens die u hier invult zijn straks openbaar te raadplegen via de BAG viewer."
+
+msgid "Remove report"
+msgstr "Verwijder terugmelding"
+
+msgid "Remove the current report"
+msgstr "Verwijder de huidige terugmelding"
+
+msgid "Upload PDOK Report"
+msgstr "Upload PDOK Terugmelding"
+
+msgid "Submit the current report"
+msgstr "Verstuur de huidige terugmelding"
+
+msgid "rejected"
+msgstr "afgewezen"
+
+msgid "pending"
+msgstr "in verwerking"
+
+msgid "approved"
+msgstr "goedgekeurd"
+
+#, java-format
+msgid "Report submitted. Registration number: {0}"
+msgstr "Terugmelding verstuurd. Registratie nummer: {0}"
+
+#, java-format
+msgid "Report upload failed with {0} error ''{1}''{2}!"
+msgstr "Terugmelding versturen is mislukt met {0} fout ''{1}''{2}!"
+
+msgid "Zoom to selected report"
+msgstr "Zoom naar de geselecteerde terugmelding"
+
+msgid "Zoom to the currently selected Report"
+msgstr "Zoom naar de huidige geselecteerde Terugmelding"
+
+msgid "Years"
+msgstr "Jaren"
+
+msgid "Months"
+msgstr "Maanden"
+
+msgid "Days"
+msgstr "Dagen"
+
+msgid "Report info"
+msgstr "Terugmelding informatie"
+
+msgid "Registration number"
+msgstr "Registratie nummer"
+
+msgid "Registration date"
+msgstr "Registratie datum"
+
+msgid "Description"
+msgstr "Omschrijving"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Status date"
+msgstr "Status datum"
+
+msgid "Responsible"
+msgstr "Verantwoordelijk"
+
+msgid "Explanation"
+msgstr "Toelichting"
+
+msgid "Object Type"
+msgstr "Objecttype"
+
+msgid "Object Id"
+msgstr "Object Id"
+
+msgid "Displays detail information on the currently selected report"
+msgstr "Geef detail informatie weer van de huidige geselecteerde terugmelding"
+
+msgid "Visit report link"
+msgstr "Bezoek terugmelding link"
+
+msgid "Link"
+msgstr "Link"
+
+msgid "Pending upload"
+msgstr "Wachten op upload"
+
+#, java-format
+msgid "Could not open the URL {0} in a browser"
+msgstr "Kon de URL {0} niet openen in een browser"
+
+msgid "New reports to upload"
+msgstr "Nieuwe terugmeldingen om te versturen"
+
+msgid "Open new reports dialog"
+msgstr "Open nieuwe terugmelding dialoog"
+
+msgid "New reports upload"
+msgstr "Nieuwe terugmelding upload"
+
+msgid "Update report"
+msgstr "Update terugmelding"
+
+msgid "Update a new report"
+msgstr "Update een nieuwe terugmelding"
+
+msgid "Finished upload"
+msgstr "Upload afgerond"
+
+#, java-format
+msgid "Uploading: {0}"
+msgstr "Uploading: {0}"
+
+msgid "Reports layer"
+msgstr "Terugmeldingen laag"
+
+#, java-format
+msgid "{0} new report"
+msgstr "{0} nieuwe terugmelding"
+
+#, java-format
+msgid "{0} new reports"
+msgstr "{0} nieuwe terugmeldingen"
+
+#, java-format
+msgid "{0} downloaded report"
+msgstr "{0} downloaded terugmelding"
+
+#, java-format
+msgid "{0} downloaded reports"
+msgstr "{0} downloaded terugmeldingen"
+
+#, java-format
+msgid "{0} report in total"
+msgstr "{0} terugmelding in totaal"
+
+#, java-format
+msgid "{0} reports in total"
+msgstr "{0} terugmeldingen in totaal"
+
+#, java-format
+msgid "{0} reports"
+msgstr "{0} terugmeldingen"
+
+msgid "API key is not set in JOSM preferences"
+msgstr "API key is niet geconfigureerd in de JOSM voorkeuren"
+
+msgid "Report filter"
+msgstr "Terugmelding filter"
+
+msgid "Downloaded reports"
+msgstr "Gedownloade terugmeldingen"
+
+msgid "New reports"
+msgstr "Nieuwe terugmeldingen"
+
+msgid "Hide completed Reports older than:"
+msgstr "Verberg afgesloten terugmeldingen ouder dan:"
+
+#, java-format
+msgid "Total reports: {0}"
+msgstr "Aantal terugmeldingen: {0}"
+
+msgid "Downloading reports"
+msgstr "Downloaden terugmeldingen"
+
+msgid "Submitting reports"
+msgstr "Versturen terugmeldingen"
+
+msgid "No reports found"
+msgstr "Geen terugmeldingen gevonden"
+
+msgid "Uploading report to server."
+msgstr "Terugmelding versturen naar server."

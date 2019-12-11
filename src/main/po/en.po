@@ -1,0 +1,276 @@
+# Translations for the JOSM plugin 'NL_PDOK_Report' (en)
+# Copyright (C) 2019
+# This file is distributed under the same license as the josm-plugin_NL_PDOK_Report package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: josm-plugin_NL_PDOK_Report v1.5.16-14-g82b2768\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-09-30 10:39+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "PDOK Reports"
+msgstr "PDOK Reports"
+
+msgid "Unofficial implementation of the PDOK Report API"
+msgstr "Unofficial implementation of the PDOK Report API"
+
+msgid "Download mode"
+msgstr "Download mode"
+
+msgid "URL of the PDOK report API"
+msgstr "URL of the PDOK report API"
+
+msgid "API key for accessing the PDOK report API"
+msgstr "API key for accessing the PDOK report API"
+
+msgid "Request API key"
+msgstr "Request API key"
+
+msgid "Email address for getting notifications"
+msgstr "Email address for getting notifications"
+
+msgid "Optional organisation for the report"
+msgstr "Optional organisation for the report"
+
+msgid "Enable experimental beta-features (might be unstable)"
+msgstr "Enable experimental beta-features (might be unstable)"
+
+msgid "Use acceptance environment"
+msgstr "Use acceptance environment"
+
+msgid "URL of the PDOK Report API (acceptance environment)"
+msgstr "URL of the PDOK Report API (acceptance environment)"
+
+msgid "API key for accessing the PDOK Report API (acceptance environment)"
+msgstr "API key for accessing the PDOK report API (acceptance environment)"
+
+msgid "Use Fiddler proxy (on local default port)"
+msgstr "Use Fiddler proxy (on local default port)"
+
+msgid "Select report from other layer"
+msgstr "Select report from other layer"
+
+msgid "Validate API key"
+msgstr "Validate API key"
+
+msgid "Validate acceptance API key"
+msgstr "Validate acceptance API key"
+
+#, java-format
+msgid "You are logged in using API KEY ''{0}''."
+msgstr "You are logged in using API KEY ''{0}''."
+
+msgid "Submit report"
+msgstr "Submit report"
+
+msgid "Submit the current report"
+msgstr "Submit the current report"
+
+msgid "Open PDOK Report layer"
+msgstr "Open PDOK Report layer"
+
+msgid "Download PDOK Reports"
+msgstr "Download PDOK Reports"
+
+msgid "Add a new PDOK Report"
+msgstr "Add a new PDOK Report"
+
+msgid "Click the location where you wish to create a new report"
+msgstr "Click the location where you wish to create a new report"
+
+msgid "Create report"
+msgstr "Create report"
+
+msgid "Create a new report"
+msgstr "Create a new report"
+
+msgid "Enter a detailed description to create a report"
+msgstr "Enter a detailed description to create a report"
+
+msgid "You must enter a description to create a new report"
+msgstr "You must enter a description to create a new report"
+
+msgid "ATTENTION! Do not enter any privacy-sensitive (personal) data below. The data you enter here will be publicly available via the BAG viewer."
+msgstr "ATTENTION! Do not enter any privacy-sensitive (personal) data below. The data you enter here will be publicly available via the BAG viewer."
+
+msgid "Remove report"
+msgstr "Remove report"
+
+msgid "Remove the current report"
+msgstr "Remove the current report"
+
+msgid "Upload PDOK Report"
+msgstr "Upload PDOK Report"
+
+msgid "Submit the current report"
+msgstr "Submit the current report"
+
+msgid "rejected"
+msgstr "rejected"
+
+msgid "pending"
+msgstr "pending"
+
+msgid "approved"
+msgstr "approved"
+
+#, java-format
+msgid "Report submitted. Registration number: {0}"
+msgstr "Report submitted. Registration number: {0}"
+
+#, java-format
+msgid "Report upload failed with {0} error ''{1}''{2}!"
+msgstr "Report upload failed with {0} error ''{1}''{2}!"
+
+msgid "Zoom to selected report"
+msgstr "Zoom to selected report"
+
+msgid "Zoom to the currently selected Report"
+msgstr "Zoom to the currently selected Report"
+
+msgid "Years"
+msgstr "Years"
+
+msgid "Months"
+msgstr "Months"
+
+msgid "Days"
+msgstr "Days"
+
+msgid "Report info"
+msgstr "Report info"
+
+msgid "Registration number"
+msgstr "Registration number"
+
+msgid "Registration date"
+msgstr "Registration date"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Status date"
+msgstr "Status date"
+
+msgid "Responsible"
+msgstr "Responsible"
+
+msgid "Explanation"
+msgstr "Explanation"
+
+msgid "Object Type"
+msgstr "Object Type"
+
+msgid "Object Id"
+msgstr "Object Id"
+
+msgid "Displays detail information on the currently selected report"
+msgstr "Displays detail information on the currently selected report"
+
+msgid "Visit report link"
+msgstr "Visit report link"
+
+msgid "Link"
+msgstr "Link"
+
+msgid "Pending upload"
+msgstr "Pending upload"
+
+#, java-format
+msgid "Could not open the URL {0} in a browser"
+msgstr "Could not open the URL {0} in a browser"
+
+msgid "New reports to upload"
+msgstr "New reports to upload"
+
+msgid "Open new reports dialog"
+msgstr "Open new reports dialog"
+
+msgid "New reports upload"
+msgstr "New reports upload"
+
+msgid "Update report"
+msgstr "Update report"
+
+msgid "Update a new report"
+msgstr "Update a new report"
+
+msgid "Finished upload"
+msgstr "Finished upload"
+
+#, java-format
+msgid "Uploading: {0}"
+msgstr "Uploading: {0}"
+
+msgid "Reports layer"
+msgstr "Reports layer"
+
+#, java-format
+msgid "{0} new report"
+msgstr "{0} new report"
+
+#, java-format
+msgid "{0} new reports"
+msgstr "{0} new reports"
+
+#, java-format
+msgid "{0} downloaded report"
+msgstr "{0} downloaded report"
+
+#, java-format
+msgid "{0} downloaded reports"
+msgstr "{0} downloaded reports"
+
+#, java-format
+msgid "{0} report in total"
+msgstr "{0} report in total"
+
+#, java-format
+msgid "{0} reports in total"
+msgstr "{0} reports in total"
+
+#, java-format
+msgid "{0} reports"
+msgstr "{0} reports"
+
+msgid "API key is not set in JOSM preferences"
+msgstr "API key is not set in JOSM preferences"
+
+msgid "Report filter"
+msgstr "Report filter"
+
+msgid "Downloaded reports"
+msgstr "Downloaded reports"
+
+msgid "New reports"
+msgstr "New reports"
+
+msgid "Hide completed Reports older than:"
+msgstr "Hide completed Reports older than:"
+
+#, java-format
+msgid "Total reports: {0}"
+msgstr "Total reports: {0}"
+
+msgid "Downloading reports"
+msgstr "Downloading reports"
+
+msgid "Submitting reports"
+msgstr "Submitting reports"
+
+msgid "No reports found"
+msgstr "No reports found"
+
+msgid "Uploading report to server…"
+msgstr "Uploading report to server…"
