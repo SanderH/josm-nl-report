@@ -52,6 +52,8 @@ import org.openstreetmap.josm.tools.Logging;
  */
 public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLoginListener {
   private static final int BRAND_LOGO_SIZE = 48;
+  private static final int TEXT_COLUMNS = 40;
+  private static final int INDENT = 20;
 
   private final JComboBox<String> downloadModeComboBox = new JComboBox<>(
     new String[] { DOWNLOAD_MODE.VISIBLE_AREA.getLabel(), DOWNLOAD_MODE.OSM_AREA.getLabel(),
@@ -59,27 +61,27 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
   );
 
   private final JLabel apiUrlLabel = new JLabel(I18n.tr("URL of the PDOK report API"));
-  protected final JTextField apiUrl = new JTextField(ReportProperties.API_URL.get(), 100);
+  protected final JTextField apiUrl = new JTextField(ReportProperties.API_URL.get(), TEXT_COLUMNS);
   
   private final JLabel apiKeyLabel = new JLabel(I18n.tr("API key for accessing the PDOK report API"));
-  protected final JTextField apiKey = new JTextField(ReportProperties.API_KEY.get(), 100);
+  protected final JTextField apiKey = new JTextField(ReportProperties.API_KEY.get(), TEXT_COLUMNS);
   private final WebLinkAction requestApiKeyLink = new WebLinkAction(I18n.tr("Request API key"), null);
   private final ReportButton apiKeyRequest = new ReportButton(requestApiKeyLink);
   
   private final JLabel emailLabel = new JLabel(I18n.tr("Email address for getting notifications"));
-  private final JTextField email = new JTextField(ReportProperties.USER_EMAIL.get(), 100);
+  private final JTextField email = new JTextField(ReportProperties.USER_EMAIL.get(), TEXT_COLUMNS);
   
   private final JLabel orgLabel = new JLabel(I18n.tr("Optional organisation for the report"));
-  private final JTextField org = new JTextField(ReportProperties.USER_ORGANISATION.get(), 100);
+  private final JTextField org = new JTextField(ReportProperties.USER_ORGANISATION.get(), TEXT_COLUMNS);
   
   private final JCheckBox selectFromOtherLayer = new JCheckBox(I18n.tr("Select report from other layer"), ReportProperties.SELECT_FROM_OTHER_LAYER.get());
   
   private final JCheckBox developer = new JCheckBox(I18n.tr("Enable experimental beta-features (might be unstable)"), ReportProperties.DEVELOPER.get());
   private final JCheckBox useActApi = new JCheckBox(I18n.tr("Use acceptance environment"), ReportProperties.USE_ACT_API.get());
   private final JLabel apiUrlActLabel = new JLabel(I18n.tr("URL of the PDOK Report API (acceptance environment)"));
-  protected final JTextField apiUrlAct = new JTextField(ReportProperties.API_URL_ACT.get(), 100);
+  protected final JTextField apiUrlAct = new JTextField(ReportProperties.API_URL_ACT.get(), TEXT_COLUMNS);
   private final JLabel apiKeyActLabel = new JLabel(I18n.tr("API key for accessing the PDOK Report API (acceptance environment)"));
-  protected final JTextField apiKeyAct = new JTextField(ReportProperties.API_KEY_ACT.get(), 100);
+  protected final JTextField apiKeyAct = new JTextField(ReportProperties.API_KEY_ACT.get(), TEXT_COLUMNS);
   private final ReportButton apiKeyActRequest = new ReportButton(requestApiKeyLink);
   
   private final JCheckBox fiddler = new JCheckBox(I18n.tr("Use Fiddler proxy (on local default port)"), ReportProperties.USE_FIDDLER.get());
@@ -170,31 +172,41 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
     downloadModePanel.add(new JLabel(I18n.tr("Download mode")));
     downloadModePanel.add(downloadModeComboBox);
 //    mainPanel.add(downloadModePanel, GBC.eol());
-    mainPanel.add(apiUrlLabel);
-    mainPanel.add(apiUrl, GBC.eol());
-    mainPanel.add(apiKeyLabel);
-    mainPanel.add(apiKey);
-    mainPanel.add(apiKeyRequest);
-    mainPanel.add(validateButton, GBC.eol());
-    mainPanel.add(emailLabel);
-    mainPanel.add(email, GBC.eol());
-    mainPanel.add(orgLabel);
-    mainPanel.add(org, GBC.eol());
-    mainPanel.add(selectFromOtherLayer, GBC.eol());
+    mainPanel.add(apiUrlLabel, GBC.std());
+    mainPanel.add(apiUrl, GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(0, 0, 0, 0));
+    
+    mainPanel.add(apiKeyLabel, GBC.std().insets(0, 0, 0, 0));
+    mainPanel.add(apiKey, GBC.std().fill(GridBagConstraints.HORIZONTAL));
+    mainPanel.add(apiKeyRequest, GBC.std().insets(5, 0, 0, 0));
+    mainPanel.add(validateButton, GBC.eol().insets(5, 0, 0, 0));
+    
+    mainPanel.add(emailLabel, GBC.std().insets(0, 0, 0, 0));
+    mainPanel.add(email, GBC.eol().fill(GridBagConstraints.HORIZONTAL));
+    
+    mainPanel.add(orgLabel, GBC.std().insets(0, 0, 0, 0));
+    mainPanel.add(org, GBC.eol().fill(GridBagConstraints.HORIZONTAL));
+    
+    mainPanel.add(selectFromOtherLayer, GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(0, 0, 0, 0));
     
     if (ExpertToggleAction.isExpert() || developer.isSelected()) {
-      mainPanel.add(developer, GBC.eol());
-      mainPanel.add(fiddler, GBC.eol());
-      mainPanel.add(useActApi, GBC.eol());
-      mainPanel.add(apiUrlActLabel);
-      mainPanel.add(apiUrlAct, GBC.eol());
-      mainPanel.add(apiKeyActLabel);
-      mainPanel.add(apiKeyAct);
-      mainPanel.add(apiKeyActRequest);
-      mainPanel.add(validateActButton, GBC.eol());
+      mainPanel.add(new JLabel(I18n.tr("Advanced settings")), GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(0, 20, 0, 0));
+      
+      mainPanel.add(developer, GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(INDENT, 0, 0, 0));
+      
+      mainPanel.add(fiddler, GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(INDENT, 0, 0, 0));
+      
+      mainPanel.add(useActApi, GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(INDENT, 0, 0, 0));
+      
+      mainPanel.add(apiUrlActLabel, GBC.std().insets(2*INDENT, 0, 0, 0));
+      mainPanel.add(apiUrlAct, GBC.eol().fill(GridBagConstraints.HORIZONTAL));
+      
+      mainPanel.add(apiKeyActLabel, GBC.std().insets(2*INDENT, 0, 0, 0));
+      mainPanel.add(apiKeyAct, GBC.std().fill(GridBagConstraints.HORIZONTAL));
+      mainPanel.add(apiKeyActRequest, GBC.std().insets(5, 0, 0, 0));
+      mainPanel.add(validateActButton, GBC.eol().insets(5, 0, 0, 0));
     }
-    ReportColorScheme.styleAsDefaultPanel(mainPanel, downloadModePanel, developer);
-    mainPanel.add(Box.createVerticalGlue(), GBC.eol().fill(GridBagConstraints.BOTH));
+//    ReportColorScheme.styleAsDefaultPanel(mainPanel, downloadModePanel, developer); // makes background white
+    mainPanel.add(Box.createVerticalGlue(), GBC.eol().fill(GridBagConstraints.VERTICAL));
 
     container.add(mainPanel, BorderLayout.CENTER);
 
@@ -214,7 +226,7 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
 
   @Override
   public void onLogin(final String apikey) {
-    validateButton.setVisible(false);
+    validateButton.setEnabled(false);
     loginLabel.setText(I18n.tr("You are logged in using API KEY ''{0}''.", apikey));
     headerPanel.revalidate();
     headerPanel.repaint();
@@ -222,7 +234,7 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
 
   @Override
   public void onLoginAct(final String apikey) {
-    validateActButton.setVisible(false);
+    validateActButton.setEnabled(false);
 //    headerPanel.add(logoutButton, 5);
     loginLabel.setText(I18n.tr("You are logged in using API KEY ''{0}''.", apikey));
     headerPanel.revalidate();
@@ -231,7 +243,7 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
 
   @Override
   public void onLogout() {
-    validateButton.setVisible(!apiKey.getText().isEmpty());
+    validateButton.setEnabled(!apiKey.getText().isEmpty());
     apiKeyRequest.setVisible(apiKey.getText().isEmpty());
 //    loginLabel.setText(I18n.tr("Enter an API key"));
     headerPanel.revalidate();
@@ -240,7 +252,7 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
 
   @Override
   public void onLogoutAct() {
-    validateActButton.setVisible(!apiKeyAct.getText().isEmpty());
+    validateActButton.setEnabled(!apiKeyAct.getText().isEmpty());
     apiKeyActRequest.setVisible(apiKeyAct.getText().isEmpty());
 //    loginLabel.setText(I18n.tr("Enter an API key"));
     headerPanel.revalidate();
@@ -278,6 +290,11 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
    *
    */
   private final class ValidateAction extends AbstractAction {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
     ValidateAction() {
       super(I18n.tr("Validate API key"));
@@ -324,6 +341,11 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
    */
   private final class ValidateActAction extends AbstractAction {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     ValidateActAction() {
       super(I18n.tr("Validate acceptance API key"));
     }
@@ -358,25 +380,6 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
       catch (IOException e) {
         Logging.error(e); 
       }
-    }
-  }
-
-  /**
-   * Logs the user out.
-   *
-   * @author nokutu
-   *
-   */
-  private final class LogoutAction extends AbstractAction {
-
-    private LogoutAction() {
-      super(I18n.tr("Logout"));
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent arg0) {
-      ReportUser.reset();
-      onLogout();
     }
   }
 }
