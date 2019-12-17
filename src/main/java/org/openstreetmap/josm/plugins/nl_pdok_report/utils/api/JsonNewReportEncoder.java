@@ -51,8 +51,8 @@ public final class JsonNewReportEncoder {
         .add("geometry", Json.createObjectBuilder()
           .add("type", "Point")
           .add("coordinates", Json.createArrayBuilder()
-            .add(reportLatLon.getY())
             .add(reportLatLon.getX())
+            .add(reportLatLon.getY())
           )
         )
       )
@@ -71,7 +71,7 @@ public final class JsonNewReportEncoder {
           // Optioneel. Let op: alleen gebruiken bij de registratie BRT met TOP10,TOP25,TOP50,TOP100,TOP250,TOP500 of
           // TOP1000, anders veld weglaten.
     
-    properties.add("bron", ReportPlugin.getPluginVersionString());
+    properties.add("bron", "OpenStreetMap (JOSM plugin)"); //ReportPlugin.getPluginVersionString());
           // Verplicht, applicatie (app, portal, site e.d.) waar de terugmelding vandaan komt.
     
     properties.add("omschrijving", report.getDescription());
@@ -119,16 +119,14 @@ public final class JsonNewReportEncoder {
   }
   
   /**
-   * Decodes a {@link JsonArray} of exactly size 2 to a {@link LatLon} instance. The first value in the
-   * {@link JsonArray} is treated as longitude, the second one as latitude.
+   * Encodes a {@link LatLon} with projection EPSG:4326 to a {@link LatLon} with projection EPSG:28992.
    * 
-   * @param json
-   *          the {@link JsonArray} containing the two numbers
-   * @return the decoded {@link LatLon} instance, or <code>null</code> if the parameter is not a {@link JsonArray} of
-   *         exactly size 2 containing two {@link JsonNumber}s.
+   * @param osmLatLon
+   *          the {@link LatLon} containing coordinate in EPSG:4326
+   * @return the encoded {@link LatLon} coordinate in EPSG:28992.
    */
   public static LatLon reportLatLon(LatLon osmLatLon) {
-    final double[] result = {osmLatLon.getY(), osmLatLon.getX()};
+    final double[] result = {osmLatLon.getX(), osmLatLon.getY()};
 
     if (transform == null)
     {
