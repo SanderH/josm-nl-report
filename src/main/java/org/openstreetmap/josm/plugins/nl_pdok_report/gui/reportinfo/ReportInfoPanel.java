@@ -3,15 +3,19 @@ package org.openstreetmap.josm.plugins.nl_pdok_report.gui.reportinfo;
 
 import static org.openstreetmap.josm.tools.I18n.tr;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.Collection;
 import java.util.Optional;
 
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -45,15 +49,15 @@ public final class ReportInfoPanel extends ToggleDialog implements ReportDataLis
   private final JLabel lblObjectId = new JLabel(tr("Object Id"));
   private final JLabel lblObjectType = new JLabel(tr("Object Type"));
 
-  private final JLabel reportNumber = new JLabel();
-  private final JLabel registrationDate = new JLabel();
-  private final JTextArea description;
-  private final JLabel status = new JLabel();
-  private final JLabel statusDate = new JLabel();
-  private final JLabel responsible = new JLabel();
-  private final JLabel explanation = new JLabel();
-  private final JLabel objectId = new JLabel();
-  private final JLabel objectType = new JLabel();
+  private final JTextArea reportNumber = new JTextArea();
+  private final JTextArea registrationDate = new JTextArea();
+  private final JTextArea description = new JTextArea();
+  private final JTextArea status = new JTextArea();
+  private final JTextArea statusDate = new JTextArea();
+  private final JTextArea responsible = new JTextArea();
+  private final JTextArea explanation = new JTextArea();
+  private final JTextArea objectId = new JTextArea();
+  private final JTextArea objectType = new JTextArea();
   private final WebLinkAction wlaLocationLink;
 
   private ValueChangeListener<Boolean> reportLinkChangeListener;
@@ -72,15 +76,11 @@ public final class ReportInfoPanel extends ToggleDialog implements ReportDataLis
         .ifPresent(it -> it.addSelectionListener(this));
     });
 
-    description = new JTextArea();
-    description.setEditable(false);
-    description.setLineWrap(true);
-    description.setWrapStyleWord(true);
-    description.setFont(lblReportNumber.getFont());
-    description.setSize(this.getWidth() - lblDescription.getWidth() - 60, description.getHeight());
+    setTextArea(this.getWidth(), lblDescription.getWidth(), lblReportNumber.getFont(), lblDescription.getBackground(),
+      reportNumber, registrationDate, description, explanation, responsible, status, statusDate, objectType, objectId);
 
     wlaLocationLink = new WebLinkAction(I18n.tr("Visit report link"), null);
-
+    
     JPanel root = new JPanel(new GridBagLayout());
     GridBagConstraints gbc = new GridBagConstraints();
     gbc.insets = new Insets(0, 8, 0, 8);
@@ -217,6 +217,8 @@ public final class ReportInfoPanel extends ToggleDialog implements ReportDataLis
       responsible.setText(newReportBAG.getSourceMaintainerName());
       status.setText(newReportBAG.getStatus());
       statusDate.setText(newReportBAG.getStatusModifiedAt(ReportProperties.DATE_FORMAT.get()));
+      objectType.setText(newReportBAG.getObjectType());
+      objectId.setText(newReportBAG.getObjectId());
       wlaLocationLink.setURL(newReportBAG.getLocationLink());
 
       if (!ReportProperties.API_KEY.isSet()) {
@@ -231,6 +233,8 @@ public final class ReportInfoPanel extends ToggleDialog implements ReportDataLis
       responsible.setText(null);
       status.setText(I18n.tr("Pending upload"));
       statusDate.setText(null);
+      objectType.setText(null);
+      objectId.setText(null);
       wlaLocationLink.setURL(null);
     } else {
       reportNumber.setText(null);
@@ -240,11 +244,32 @@ public final class ReportInfoPanel extends ToggleDialog implements ReportDataLis
       responsible.setText(null);
       status.setText(null);
       statusDate.setText(null);
+      objectType.setText(null);
+      objectId.setText(null);
       wlaLocationLink.setURL(null);
     }
 
-    description.setSize(this.getWidth() - lblDescription.getWidth() - 100, description.getHeight());
-    description.setBackground(lblDescription.getBackground());
+    setTextArea(this.getWidth(), lblDescription.getWidth(), lblReportNumber.getFont(), lblDescription.getBackground(),
+      reportNumber, registrationDate, description, explanation, responsible, status, statusDate, objectType, objectId);
+  }
+  
+  /**
+   * Sets the given textareas with identical properties and fills the width to fit the panel
+   * 
+   * @param components
+   *          the components to style as default
+   */
+  public static void setTextArea(int panelWidth, int labelWidth, Font font, Color color, JTextArea... components) {
+    if (components != null && components.length >= 1) {
+      for (JTextArea component : components) {
+        component.setEditable(false);
+        component.setLineWrap(true);
+        component.setWrapStyleWord(true);
+        component.setFont(font);
+        component.setBackground(color);
+        component.setSize(panelWidth - labelWidth - 100, component.getHeight());
+      }
+    }
   }
 
   /*
