@@ -235,7 +235,7 @@ public final class ReportInfoPanel extends ToggleDialog implements ReportDataLis
       statusDate.setText(null);
       objectType.setText(null);
       objectId.setText(null);
-      wlaLocationLink.setURL(null);
+      wlaLocationLink.setURL(newReportBAG.getLocationLink());
     } else {
       reportNumber.setText(null);
       registrationDate.setText(null);

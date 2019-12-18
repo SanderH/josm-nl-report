@@ -4,6 +4,8 @@ package org.openstreetmap.josm.plugins.nl_pdok_report;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.List;
@@ -18,6 +20,8 @@ import org.openstreetmap.josm.gui.MapView;
 import org.openstreetmap.josm.gui.layer.geoimage.GeoImageLayer;
 import org.openstreetmap.josm.gui.layer.geoimage.ImageEntry;
 import org.openstreetmap.josm.plugins.nl_pdok_report.utils.ReportUtils;
+import org.openstreetmap.josm.plugins.nl_pdok_report.utils.api.JsonNewReportEncoder;
+import org.openstreetmap.josm.tools.Logging;
 
 /**
  * A FeedbackImoprtedImage object represents a picture imported locally.
@@ -97,6 +101,20 @@ public class ReportNewBAG extends AbstractReport {
 
   public int getFileCount() {
     return this.files.size();
+  }
+  
+  public URL getLocationLink()
+  {
+    URL tempLocationLink = null;
+    try {
+      LatLon tempLocation = JsonNewReportEncoder.reportLatLon(latLon);
+      String tempUrl = String.format("https://bagviewer.kadaster.nl/#?geometry.x=%s&geometry.y=%s&zoomlevel=7", 
+        tempLocation.getX(), tempLocation.getY());
+      tempLocationLink = new URL(tempUrl);
+    } catch (MalformedURLException e) {
+      Logging.error("URL is malformed", e);
+    }
+    return tempLocationLink;
   }
 
   @Override
