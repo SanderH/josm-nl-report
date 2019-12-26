@@ -52,7 +52,7 @@ public class ReportPropertiesDialog extends ExtendedDialog {
    */
   public void showReportPropertiesDialog(String message, Icon icon) {
     textArea.setRows(6);
-    textArea.setColumns(30);
+    textArea.setColumns(20);
     textArea.setLineWrap(true);
     textArea.setWrapStyleWord(true);
     JScrollPane scrollPane = new JScrollPane(textArea);
