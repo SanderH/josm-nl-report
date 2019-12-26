@@ -89,7 +89,7 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
   private final JButton validateButton = new ReportButton(new ValidateAction());
   private final JButton validateActButton = new ReportButton(new ValidateActAction());
   private final JLabel infoLabel = new JLabel(I18n.tr("Unofficial implementation of the PDOK Report API"));
-  private final JLabel loginLabel = new JLabel();
+//  private final JLabel loginLabel = new JLabel();
   private final JPanel headerPanel = new JPanel();
 
   @Override
@@ -227,7 +227,8 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
   @Override
   public void onLogin(final String apikey) {
     validateButton.setEnabled(false);
-    loginLabel.setText(I18n.tr("You are logged in using API KEY ''{0}''.", apikey));
+//    loginLabel.setText(I18n.tr("You are logged in using API KEY ''{0}''.", apikey));
+    new Notification(I18n.tr("You are logged in using API KEY ''{0}''.", apikey)).setDuration(Notification.TIME_DEFAULT).show();
     headerPanel.revalidate();
     headerPanel.repaint();
   }
@@ -236,7 +237,8 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
   public void onLoginAct(final String apikey) {
     validateActButton.setEnabled(false);
 //    headerPanel.add(logoutButton, 5);
-    loginLabel.setText(I18n.tr("You are logged in using API KEY ''{0}''.", apikey));
+//    loginLabel.setText(I18n.tr("You are logged in using API KEY ''{0}''.", apikey));
+    new Notification(I18n.tr("You are logged in using API KEY ''{0}''.", apikey)).setDuration(Notification.TIME_DEFAULT).show();
     headerPanel.revalidate();
     headerPanel.repaint();
   }
