@@ -589,7 +589,8 @@ public final class ReportLayer extends AbstractModifiableLayer
       StringBuilder sb = new StringBuilder("<html>");
       sb.append(tr("Report"))
         .append(" ").append(report instanceof ReportBAG ? ((ReportBAG)report).getReportNumberFull() : "")
-        .append("<hr />").append(report.getDescription());
+        .append("<hr />").append(report.getDescription())
+        .append(" ").append(report instanceof ReportBAG && (((ReportBAG) report).getExplanation() != null) ? String.format("%s %s" , "<hr />", ((ReportBAG)report).getExplanation()) : "");
       sb.append("</html>");
       String result = sb.toString();
 //      Logging.debug(result);
