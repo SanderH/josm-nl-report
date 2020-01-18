@@ -28,6 +28,7 @@ import org.openstreetmap.josm.plugins.nl_pdok_report.ReportBAG;
 import org.openstreetmap.josm.plugins.nl_pdok_report.ReportDataListener;
 import org.openstreetmap.josm.plugins.nl_pdok_report.ReportLayer;
 import org.openstreetmap.josm.plugins.nl_pdok_report.ReportNewBAG;
+import org.openstreetmap.josm.plugins.nl_pdok_report.utils.ReportProperties;
 import org.openstreetmap.josm.tools.ImageProvider;
 
 /**
@@ -37,6 +38,8 @@ import org.openstreetmap.josm.tools.ImageProvider;
  * @see ReportFilterChooseSigns
  */
 public final class ReportFilterDialog extends ToggleDialog implements ReportDataListener {
+  private static final long serialVersionUID = -3833041091569456525L;
+
   private static ReportFilterDialog instance;
 
   private static final String[] TIME_LIST = { tr("Years"), tr("Months"), tr("Days") };
@@ -56,7 +59,7 @@ public final class ReportFilterDialog extends ToggleDialog implements ReportData
   private final JCheckBox newReports = new JCheckBox(tr("New reports"));
   private final JCheckBox downloadedReports = new JCheckBox(new DownloadCheckBoxAction());
   private final JComboBox<String> time;
-  private final JTextField user;
+//  private final JTextField user;
 
   private ReportFilterDialog() {
     super(
@@ -79,13 +82,6 @@ public final class ReportFilterDialog extends ToggleDialog implements ReportData
       spinner.setEnabled(filterByDateCheckbox.isSelected());
       time.setEnabled(filterByDateCheckbox.isSelected());
     });
-
-    JPanel userSearchPanel = new JPanel();
-    userSearchPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-    this.user = new DisableShortcutsOnFocusGainedTextField(10);
-    this.user.addActionListener(new UpdateAction());
-    userSearchPanel.add(new JLabel(tr("User")));
-    userSearchPanel.add(this.user);
 
     this.newReports.setSelected(true);
     this.downloadedReports.setSelected(true);
@@ -137,9 +133,10 @@ public final class ReportFilterDialog extends ToggleDialog implements ReportData
   public void reset() {
     this.newReports.setSelected(true);
     this.downloadedReports.setSelected(true);
-    this.user.setText("");
-    this.time.setSelectedItem(TIME_LIST[1]);
-    this.spinnerModel.setValue(1);
+//    this.user.setText("");
+    this.filterByDateCheckbox.setSelected(ReportProperties.FILTER_HIDE_CLOSED.get());
+    this.time.setSelectedItem(TIME_LIST[ReportProperties.FILTER_HIDE_PERIOD.get()]);
+    this.spinnerModel.setValue(ReportProperties.FILTER_HIDE_NUMBER.get());
     refresh();
   }
 
@@ -193,7 +190,16 @@ public final class ReportFilterDialog extends ToggleDialog implements ReportData
     }
     return false;
   }
-
+  
+  /**
+   * Save the selected filter settings.
+   */
+  public synchronized void save() {
+    ReportProperties.FILTER_HIDE_CLOSED.put(filterByDateCheckbox.isSelected());
+    ReportProperties.FILTER_HIDE_NUMBER.put(spinnerModel.getNumber().doubleValue());
+    ReportProperties.FILTER_HIDE_PERIOD.put(time.getSelectedIndex());
+  }
+  
   private static long currentTime() {
     Calendar cal = Calendar.getInstance();
     return cal.getTimeInMillis();
@@ -207,6 +213,8 @@ public final class ReportFilterDialog extends ToggleDialog implements ReportData
   }
 
   private class DownloadCheckBoxAction extends AbstractAction {
+    private static final long serialVersionUID = 1198389258289785522L;
+
     DownloadCheckBoxAction() {
       putValue(NAME, tr("Downloaded reports"));
     }
@@ -218,6 +226,8 @@ public final class ReportFilterDialog extends ToggleDialog implements ReportData
   }
 
   private static class UpdateAction extends AbstractAction {
+    private static final long serialVersionUID = 1776993064234158637L;
+
     UpdateAction() {
       putValue(NAME, tr("Update"));
       new ImageProvider("dialogs", "refresh").getResource().attachImageIcon(this, true);
@@ -230,6 +240,8 @@ public final class ReportFilterDialog extends ToggleDialog implements ReportData
   }
 
   private static class ResetAction extends AbstractAction {
+    private static final long serialVersionUID = 6679721670983203591L;
+
     ResetAction() {
       putValue(NAME, tr("Reset"));
       new ImageProvider("preferences", "reset").getResource().attachImageIcon(this, true);
@@ -240,5 +252,21 @@ public final class ReportFilterDialog extends ToggleDialog implements ReportData
       ReportFilterDialog.getInstance().reset();
     }
   }
+  
+  private static class SaveAction extends AbstractAction {
+    private static final long serialVersionUID = 7302498164858018650L;
+
+    @SuppressWarnings("unused")
+    SaveAction() {
+      putValue(NAME, tr("Save"));
+      new ImageProvider("dialogs", "save").getResource().attachImageIcon(this, true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent arg0) {
+      ReportFilterDialog.getInstance().save();
+    }
+  }
+
 
 }
