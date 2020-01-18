@@ -115,7 +115,7 @@ public final class PluginState {
     );
   }
 
-  public static void notLoggedInToFeedbackDialog() {
+  public static void notLoggedInToReportDialog() {
     final MainFrame mainFrame = MainApplication.getMainFrame();
     if (mainFrame != null) {
       JOptionPane.showMessageDialog(
