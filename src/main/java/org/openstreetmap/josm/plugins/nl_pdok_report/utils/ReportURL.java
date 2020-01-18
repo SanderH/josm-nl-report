@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.openstreetmap.josm.data.Bounds;
+import org.openstreetmap.josm.plugins.nl_pdok_report.utils.ReportProperties.REPORT_API;
 import org.openstreetmap.josm.tools.Logging;
 
 public final class ReportURL {
@@ -23,6 +24,8 @@ public final class ReportURL {
   private static final SimpleDateFormat API_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
   private static final String REPORT_TYPE = "BAG";
   private static final String REPORT_STATUS_CODES = "NIEUW,IN_ONDERZOEK,GOEDGEKEURD,AFGEWEZEN,AFGEROND";
+  private static final String DEFAULT_API_PROXY_URL = "https://terugmeldingen.proxy.tools4osm.nl/v1";
+  private static final String DEFAULT_API_PROXY_URL_ACT = "https://terugmeldingen.proxy.tools4osm.nl/act/v1";
 
   private ReportURL() {
     // Private constructor to avoid instantiation
@@ -33,7 +36,7 @@ public final class ReportURL {
 
    */
   private static String getBaseApiUrl() {
-    return getBaseApiUrl(false);
+    return getBaseApiUrl(REPORT_API.fromPrefId(ReportProperties.API_REPORT_USE.get()));
   }
   
   /**
@@ -41,20 +44,33 @@ public final class ReportURL {
    * 
    * @param act Validate acceptance environment instead of production
    */
-  private static String getBaseApiUrl(Boolean act) {
-    if (act || ReportProperties.USE_ACT_API.get())
+  private static String getBaseApiUrl(REPORT_API reportApi) {
+
+    switch (reportApi)
     {
-      if (ReportProperties.API_URL_ACT.isSet()) {
-        return ReportProperties.API_URL_ACT.get();
-      }
-      return DEFAULT_API_URL_ACT;
+      default:
+      case PDOK_PRODUCTION:
+        if (ReportProperties.API_URL.isSet()) {
+          return ReportProperties.API_URL.get();
+        }
+        return DEFAULT_API_URL;
+      case PDOK_ACCEPTANCE:
+        if (ReportProperties.API_URL_ACT.isSet()) {
+          return ReportProperties.API_URL_ACT.get();
+        }
+        return DEFAULT_API_URL_ACT;
+      case PROXY_PRODUCTION:
+        if (ReportProperties.API_PROXY_URL.isSet()) {
+          return ReportProperties.API_PROXY_URL.get();
+        }
+        return DEFAULT_API_PROXY_URL;
+      case PROXY_ACCEPTANCE:
+        if (ReportProperties.API_PROXY_URL_ACT.isSet()) {
+          return ReportProperties.API_PROXY_URL_ACT.get();
+        }
+        return DEFAULT_API_PROXY_URL_ACT;
     }
-    
-    // use production environment
-    if (ReportProperties.API_URL.isSet()) {
-      return ReportProperties.API_URL.get();
-    }
-    return DEFAULT_API_URL;
+
   }
 
   public static URL requestApiKeyURL() {
@@ -78,13 +94,13 @@ public final class ReportURL {
    * 
    * @param act Validate acceptance environment instead of production
    */
-  public static URL validateApiURL(Boolean act) {
+  public static URL validateApiURL(REPORT_API reportApi) {
     Map<String, String> querystring = new HashMap<>();
     querystring.put("peildatum", "1000-01-01");
     querystring.put("registratie", REPORT_TYPE);
     querystring.put("statusCode", REPORT_STATUS_CODES);
 
-    return string2URL(getBaseApiUrl(act), "", queryString(querystring));
+    return string2URL(getBaseApiUrl(reportApi), "", queryString(querystring));
   }
 
   /**
@@ -102,7 +118,7 @@ public final class ReportURL {
    * @return the constructed query string (including a leading ?)
    */
   static String queryString(Map<String, String> parts) {
-    StringBuilder ret = new StringBuilder("?"); // => header => "?apikeyAuth=").append(FeedbackUser.getApiKey());
+    StringBuilder ret = new StringBuilder("?");
     if (parts != null) {
       for (Entry<String, String> entry : parts.entrySet()) {
         try {

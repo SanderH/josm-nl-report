@@ -18,6 +18,7 @@ import org.openstreetmap.josm.plugins.nl_pdok_report.ReportLayer;
 import org.openstreetmap.josm.plugins.nl_pdok_report.ReportNewBAG;
 import org.openstreetmap.josm.plugins.nl_pdok_report.gui.ReportNewDialog;
 import org.openstreetmap.josm.plugins.nl_pdok_report.utils.ReportProperties;
+import org.openstreetmap.josm.plugins.nl_pdok_report.utils.ReportProperties.REPORT_API;
 import org.openstreetmap.josm.plugins.nl_pdok_report.utils.ReportURL;
 import org.openstreetmap.josm.plugins.nl_pdok_report.utils.ReportUtils;
 import org.openstreetmap.josm.plugins.nl_pdok_report.utils.MultipartUtility;
@@ -59,8 +60,12 @@ public class ReportUploadNewAction extends JosmAction {
   public void actionPerformed(ActionEvent event) {
     new Thread(() -> {
       changesetDialog.setUploadPending(true);
-      String token = ReportProperties.USE_ACT_API.get() ? ReportProperties.API_KEY_ACT.get() : ReportProperties.API_KEY.get();
-      if (token != null && !token.trim().isEmpty()) {
+      
+      REPORT_API reportApi = REPORT_API.fromPrefId(ReportProperties.API_REPORT_USE.get());
+      String token = reportApi.getToken();
+      
+//      String token = ReportProperties.USE_ACT_API.get() ? ReportProperties.API_KEY_ACT.get() : ReportProperties.API_KEY.get();
+      if ((token != null && !token.trim().isEmpty()) || !reportApi.needsKey()) {
         PluginState.setSubmittingChangeset(true);
         ReportUtils.updateHelpText();
         List<AbstractReport> newReports = ReportLayer.getInstance().getData().getNewReports();
@@ -73,7 +78,9 @@ public class ReportUploadNewAction extends JosmAction {
             MultipartUtility multipart = new MultipartUtility(ReportURL.submitReport(), "UTF-8", ReportProperties.USE_FIDDLER.get());
             multipart.setRequestProperty("Accept", "application/json");
             multipart.setRequestProperty("User-Agent", "JOSM");
-            multipart.setRequestProperty("apikey", token);
+            if (reportApi.needsKey()) {
+              multipart.setRequestProperty("apikey", token);
+            }
             multipart.setRequestProperty("API-Version", "1.0.0");
             //multipart.addFilePart("files", <file>);
             multipart.StartStream();
@@ -130,7 +137,7 @@ public class ReportUploadNewAction extends JosmAction {
           }
         });
       } else {
-        PluginState.notLoggedInToFeedbackDialog();
+        PluginState.notLoggedInToReportDialog();
       }
       changesetDialog.setUploadPending(false);
     }, "Report submit").start();

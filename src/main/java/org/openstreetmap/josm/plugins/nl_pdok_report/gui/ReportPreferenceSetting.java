@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 
@@ -33,11 +35,11 @@ import org.openstreetmap.josm.gui.preferences.TabPreferenceSetting;
 import org.openstreetmap.josm.plugins.nl_pdok_report.ReportPlugin;
 import org.openstreetmap.josm.plugins.nl_pdok_report.gui.boilerplate.ReportButton;
 import org.openstreetmap.josm.plugins.nl_pdok_report.gui.reportinfo.WebLinkAction;
-import org.openstreetmap.josm.plugins.nl_pdok_report.io.download.ReportDownloader.DOWNLOAD_MODE;
 import org.openstreetmap.josm.plugins.nl_pdok_report.oauth.ReportLoginListener;
 import org.openstreetmap.josm.plugins.nl_pdok_report.oauth.ReportUser;
 import org.openstreetmap.josm.plugins.nl_pdok_report.utils.ReportColorScheme;
 import org.openstreetmap.josm.plugins.nl_pdok_report.utils.ReportProperties;
+import org.openstreetmap.josm.plugins.nl_pdok_report.utils.ReportProperties.REPORT_API;
 import org.openstreetmap.josm.plugins.nl_pdok_report.utils.ReportURL;
 import org.openstreetmap.josm.tools.GBC;
 import org.openstreetmap.josm.tools.I18n;
@@ -55,13 +57,15 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
   private static final int TEXT_COLUMNS = 40;
   private static final int INDENT = 20;
 
-  private final JComboBox<String> downloadModeComboBox = new JComboBox<>(
-    new String[] { DOWNLOAD_MODE.VISIBLE_AREA.getLabel(), DOWNLOAD_MODE.OSM_AREA.getLabel(),
-        DOWNLOAD_MODE.MANUAL_ONLY.getLabel() }
+  private final JComboBox<String> reportApiComboBox = new JComboBox<>(
+    new String[] { REPORT_API.PDOK_PRODUCTION.getLabel(), REPORT_API.PROXY_PRODUCTION.getLabel() }
   );
 
   private final JLabel apiUrlLabel = new JLabel(I18n.tr("URL of the PDOK report API"));
   protected final JTextField apiUrl = new JTextField(ReportProperties.API_URL.get(), TEXT_COLUMNS);
+
+  private final JLabel apiProxyUrlLabel = new JLabel(I18n.tr("URL of the PDOK report API (proxy)"));
+  protected final JTextField apiProxyUrl = new JTextField(ReportProperties.API_PROXY_URL.get(), TEXT_COLUMNS);
   
   private final JLabel apiKeyLabel = new JLabel(I18n.tr("API key for accessing the PDOK report API"));
   protected final JTextField apiKey = new JTextField(ReportProperties.API_KEY.get(), TEXT_COLUMNS);
@@ -77,19 +81,20 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
   private final JCheckBox selectFromOtherLayer = new JCheckBox(I18n.tr("Select report from other layer"), ReportProperties.SELECT_FROM_OTHER_LAYER.get());
   
   private final JCheckBox developer = new JCheckBox(I18n.tr("Enable experimental beta-features (might be unstable)"), ReportProperties.DEVELOPER.get());
-  private final JCheckBox useActApi = new JCheckBox(I18n.tr("Use acceptance environment"), ReportProperties.USE_ACT_API.get());
   private final JLabel apiUrlActLabel = new JLabel(I18n.tr("URL of the PDOK Report API (acceptance environment)"));
   protected final JTextField apiUrlAct = new JTextField(ReportProperties.API_URL_ACT.get(), TEXT_COLUMNS);
   private final JLabel apiKeyActLabel = new JLabel(I18n.tr("API key for accessing the PDOK Report API (acceptance environment)"));
   protected final JTextField apiKeyAct = new JTextField(ReportProperties.API_KEY_ACT.get(), TEXT_COLUMNS);
   private final ReportButton apiKeyActRequest = new ReportButton(requestApiKeyLink);
-  
+
+  private final JLabel apiProxyUrlActLabel = new JLabel(I18n.tr("URL of the PDOK Report API (proxy acceptance environment)"));
+  protected final JTextField apiProxyUrlAct = new JTextField(ReportProperties.API_PROXY_URL_ACT.get(), TEXT_COLUMNS);
+
   private final JCheckBox fiddler = new JCheckBox(I18n.tr("Use Fiddler proxy (on local default port)"), ReportProperties.USE_FIDDLER.get());
 
   private final JButton validateButton = new ReportButton(new ValidateAction());
   private final JButton validateActButton = new ReportButton(new ValidateActAction());
   private final JLabel infoLabel = new JLabel(I18n.tr("Unofficial implementation of the PDOK Report API"));
-//  private final JLabel loginLabel = new JLabel();
   private final JPanel headerPanel = new JPanel();
 
   @Override
@@ -136,7 +141,21 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
     mainPanel.setLayout(new GridBagLayout());
     mainPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
-    downloadModeComboBox.setSelectedItem(DOWNLOAD_MODE.fromPrefId(ReportProperties.DOWNLOAD_MODE.get()).getLabel());
+//    downloadModeComboBox.setSelectedItem(DOWNLOAD_MODE.fromPrefId(ReportProperties.DOWNLOAD_MODE.get()).getLabel());
+    if (ExpertToggleAction.isExpert() || developer.isSelected()) {
+      reportApiComboBox.insertItemAt(REPORT_API.PDOK_ACCEPTANCE.getLabel(), 1);
+      reportApiComboBox.addItem(REPORT_API.PROXY_ACCEPTANCE.getLabel());
+    }
+    reportApiComboBox.setSelectedItem(REPORT_API.fromPrefId(ReportProperties.API_REPORT_USE.get()).getLabel());
+    enableControls();
+    reportApiComboBox.addItemListener(new ItemListener() {
+      // Listening if a new items of the combo box has been selected.
+      @Override
+      public void itemStateChanged(ItemEvent event) {
+        enableControls();
+      }
+    });
+    
     apiKey.getDocument().addDocumentListener(new DocumentListener() {
       @Override
       public void changedUpdate(DocumentEvent e) {
@@ -168,10 +187,17 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
     
     requestApiKeyLink.setURL(ReportURL.requestApiKeyURL());
     
-    JPanel downloadModePanel = new JPanel();
-    downloadModePanel.add(new JLabel(I18n.tr("Download mode")));
-    downloadModePanel.add(downloadModeComboBox);
+    //JPanel downloadModePanel = new JPanel();
+    //downloadModePanel.add(new JLabel(I18n.tr("Download mode")));
+    //downloadModePanel.add(downloadModeComboBox);
 //    mainPanel.add(downloadModePanel, GBC.eol());
+
+    JPanel reportApiPanel = new JPanel();
+    reportApiPanel.add(new JLabel(I18n.tr("Use Reports API")));
+    reportApiPanel.add(reportApiComboBox);
+    reportApiPanel.add(new JLabel(I18n.tr("Use the official PDOK API with your own API key or a reverse proxy to the official PDOK API hosted by Sander H without the need for your own API key")));
+    mainPanel.add(reportApiPanel, GBC.eol());
+    
     mainPanel.add(apiUrlLabel, GBC.std());
     mainPanel.add(apiUrl, GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(0, 0, 0, 0));
     
@@ -179,6 +205,9 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
     mainPanel.add(apiKey, GBC.std().fill(GridBagConstraints.HORIZONTAL));
     mainPanel.add(apiKeyRequest, GBC.std().insets(5, 0, 0, 0));
     mainPanel.add(validateButton, GBC.eol().insets(5, 0, 0, 0));
+    
+    mainPanel.add(apiProxyUrlLabel, GBC.std());
+    mainPanel.add(apiProxyUrl, GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(0, 0, 0, 0));
     
     mainPanel.add(emailLabel, GBC.std().insets(0, 0, 0, 0));
     mainPanel.add(email, GBC.eol().fill(GridBagConstraints.HORIZONTAL));
@@ -188,14 +217,16 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
     
     mainPanel.add(selectFromOtherLayer, GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(0, 0, 0, 0));
     
-    if (ExpertToggleAction.isExpert() || developer.isSelected()) {
+    if (ExpertToggleAction.isExpert() || 
+        developer.isSelected() || 
+        !REPORT_API.fromLabel(reportApiComboBox.getSelectedItem().toString()).isProduction()) {
       mainPanel.add(new JLabel(I18n.tr("Advanced settings")), GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(0, 20, 0, 0));
       
       mainPanel.add(developer, GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(INDENT, 0, 0, 0));
       
       mainPanel.add(fiddler, GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(INDENT, 0, 0, 0));
       
-      mainPanel.add(useActApi, GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(INDENT, 0, 0, 0));
+//      mainPanel.add(useActApi, GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(INDENT, 0, 0, 0));
       
       mainPanel.add(apiUrlActLabel, GBC.std().insets(2*INDENT, 0, 0, 0));
       mainPanel.add(apiUrlAct, GBC.eol().fill(GridBagConstraints.HORIZONTAL));
@@ -204,6 +235,9 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
       mainPanel.add(apiKeyAct, GBC.std().fill(GridBagConstraints.HORIZONTAL));
       mainPanel.add(apiKeyActRequest, GBC.std().insets(5, 0, 0, 0));
       mainPanel.add(validateActButton, GBC.eol().insets(5, 0, 0, 0));
+
+      mainPanel.add(apiProxyUrlActLabel, GBC.std().insets(2*INDENT, 0, 0, 0));
+      mainPanel.add(apiProxyUrlAct, GBC.eol().fill(GridBagConstraints.HORIZONTAL));
     }
 //    ReportColorScheme.styleAsDefaultPanel(mainPanel, downloadModePanel, developer); // makes background white
     mainPanel.add(Box.createVerticalGlue(), GBC.eol().fill(GridBagConstraints.VERTICAL));
@@ -222,6 +256,22 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
         SwingUtilities.invokeLater(() -> onLogin(ReportUser.getApiKey()));
       }
     }).start();
+  }
+  
+  public void enableControls()
+  {
+    REPORT_API reportApi = REPORT_API.fromLabel(reportApiComboBox.getSelectedItem().toString());
+    apiUrl.setEnabled(reportApi == REPORT_API.PDOK_PRODUCTION);
+    apiKey.setEnabled(reportApi == REPORT_API.PDOK_PRODUCTION);
+    validateButton.setEnabled(reportApi == REPORT_API.PDOK_PRODUCTION);
+
+    apiUrlAct.setEnabled(reportApi == REPORT_API.PDOK_ACCEPTANCE);
+    apiKeyAct.setEnabled(reportApi == REPORT_API.PDOK_ACCEPTANCE);
+    validateActButton.setEnabled(reportApi == REPORT_API.PDOK_ACCEPTANCE);
+   
+    apiProxyUrl.setEnabled(reportApi == REPORT_API.PROXY_PRODUCTION);
+    
+    apiProxyUrlAct.setEnabled(reportApi == REPORT_API.PROXY_ACCEPTANCE);
   }
 
   @Override
@@ -265,15 +315,18 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
   @Override
   public boolean ok() {
 //    ReportProperties.DOWNLOAD_MODE.put(DOWNLOAD_MODE.fromLabel(downloadModeComboBox.getSelectedItem().toString()).getPrefId());
+    ReportProperties.API_REPORT_USE.put(REPORT_API.fromLabel(reportApiComboBox.getSelectedItem().toString()).getPrefId());
+
     ReportProperties.API_KEY.put(apiKey.getText());
     ReportProperties.API_URL.put(apiUrl.getText());
+    ReportProperties.API_PROXY_URL.put(apiProxyUrl.getText());
     ReportProperties.USER_EMAIL.put(email.getText());
     ReportProperties.USER_ORGANISATION.put(org.getText());
     ReportProperties.DEVELOPER.put(developer.isSelected());
     ReportProperties.USE_FIDDLER.put(fiddler.isSelected());
-    ReportProperties.USE_ACT_API.put(useActApi.isSelected());
     ReportProperties.API_KEY_ACT.put(apiKeyAct.getText());
     ReportProperties.API_URL_ACT.put(apiUrlAct.getText());
+    ReportProperties.API_PROXY_URL_ACT.put(apiProxyUrlAct.getText());
     ReportProperties.SELECT_FROM_OTHER_LAYER.put(selectFromOtherLayer.isSelected());
 
     // Restart is never required
@@ -312,7 +365,7 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
       }
       try
       {
-        HttpURLConnection connection = (HttpURLConnection)ReportURL.validateApiURL(false).openConnection();
+        HttpURLConnection connection = (HttpURLConnection)ReportURL.validateApiURL(REPORT_API.PDOK_PRODUCTION).openConnection();
         connection.setRequestProperty("Content-Type", "application/json");
         connection.setRequestProperty("User-Agent", "JOSM");
         connection.setRequestProperty("apikey", apiKey.getText());
@@ -362,7 +415,7 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
       }
       try
       {
-        HttpURLConnection connection = (HttpURLConnection)ReportURL.validateApiURL(true).openConnection();
+        HttpURLConnection connection = (HttpURLConnection)ReportURL.validateApiURL(REPORT_API.PDOK_ACCEPTANCE).openConnection();
         connection.setRequestProperty("Content-Type", "application/json");
         connection.setRequestProperty("User-Agent", "JOSM");
         connection.setRequestProperty("apikey", apiKeyAct.getText());

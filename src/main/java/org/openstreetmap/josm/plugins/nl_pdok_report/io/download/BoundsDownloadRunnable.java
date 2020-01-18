@@ -14,6 +14,7 @@ import org.openstreetmap.josm.data.Bounds;
 import org.openstreetmap.josm.gui.Notification;
 import org.openstreetmap.josm.plugins.nl_pdok_report.ReportPlugin;
 import org.openstreetmap.josm.plugins.nl_pdok_report.utils.ReportProperties;
+import org.openstreetmap.josm.plugins.nl_pdok_report.utils.ReportProperties.REPORT_API;
 import org.openstreetmap.josm.plugins.nl_pdok_report.utils.MultipartUtility;
 import org.openstreetmap.josm.tools.I18n;
 import org.openstreetmap.josm.tools.ImageProvider.ImageSizes;
@@ -33,8 +34,11 @@ public abstract class BoundsDownloadRunnable implements Runnable {
   public void run() {
     URL nextURL = getUrlGenerator().apply(bounds);
     try {
-      String token = ReportProperties.USE_ACT_API.get() ? ReportProperties.API_KEY_ACT.get() : ReportProperties.API_KEY.get();
-      if (token != null && !token.trim().isEmpty()) {
+      REPORT_API reportApi = REPORT_API.fromPrefId(ReportProperties.API_REPORT_USE.get());
+      String token = reportApi.getToken();
+
+//      String token = ReportProperties.USE_ACT_API.get() ? ReportProperties.API_KEY_ACT.get() : ReportProperties.API_KEY.get();
+      if ((token != null && !token.trim().isEmpty()) || !reportApi.needsKey()) {
         URLConnection con = nextURL.openConnection();
         if (ReportProperties.USE_FIDDLER.get())
         {
@@ -49,7 +53,10 @@ public abstract class BoundsDownloadRunnable implements Runnable {
         con.setRequestProperty("Content-Type", "application/json");
         con.setRequestProperty("User-Agent", "JOSM");
         con.setRequestProperty("API-Version", "1.0.0");
-        con.setRequestProperty("apikey", token);
+        if (reportApi.needsKey())
+        {
+          con.setRequestProperty("apikey", token);
+        }
         run(con);
       }
       else
