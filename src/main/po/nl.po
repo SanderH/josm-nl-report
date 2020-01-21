@@ -52,6 +52,12 @@ msgstr "URL voor de PDOK Terugmeldingen API (accaptatie omgeving)"
 msgid "API key for accessing the PDOK Report API (acceptance environment)"
 msgstr "API key voor toegang tot de PDOK Terugmeldingen API (acceptatie omgeving)"
 
+msgid "URL of the PDOK report API (proxy)"
+msgstr "URL voor de PDOK Terugmeldingen API (proxy)"
+
+msgid "URL of the PDOK Report API (proxy acceptance environment)"
+msgstr "URL voor de PDOK Terugmeldingen API (proxy acceptatie omgeving)"
+
 msgid "Use Fiddler proxy (on local default port)"
 msgstr "Gebruik Fiddler proxy (op de standaard lokale poort)"
 
@@ -108,7 +114,7 @@ msgid "Remove the current report"
 msgstr "Verwijder de huidige terugmelding"
 
 msgid "Upload PDOK Report"
-msgstr "Upload PDOK Terugmelding"
+msgstr "Verstuur PDOK Terugmelding"
 
 msgid "Submit the current report"
 msgstr "Verstuur de huidige terugmelding"
@@ -185,7 +191,7 @@ msgid "Link"
 msgstr "Link"
 
 msgid "Pending upload"
-msgstr "Wachten op upload"
+msgstr "Wachten op versturen"
 
 #, java-format
 msgid "Could not open the URL {0} in a browser"
@@ -198,7 +204,7 @@ msgid "Open new reports dialog"
 msgstr "Open nieuwe terugmelding dialoog"
 
 msgid "New reports upload"
-msgstr "Nieuwe terugmelding upload"
+msgstr "Nieuwe terugmelding versturen"
 
 msgid "Update report"
 msgstr "Update terugmelding"
@@ -207,7 +213,7 @@ msgid "Update a new report"
 msgstr "Update een nieuwe terugmelding"
 
 msgid "Finished upload"
-msgstr "Upload afgerond"
+msgstr "Versturen afgerond"
 
 #, java-format
 msgid "Uploading: {0}"
@@ -274,3 +280,24 @@ msgstr "Geen terugmeldingen gevonden"
 
 msgid "Uploading report to server."
 msgstr "Terugmelding versturen naar server."
+
+msgid "Report"
+msgstr "Terugmelding"
+
+msgid "Use Reports API"
+msgstr "Gebruik Terugmeldingen API"
+
+msgid "PDOK Production"
+msgstr "PDOK Productie"
+
+msgid "PDOK Acceptance"
+msgstr "PDOK Acceptatie"
+
+msgid "Proxy Production"
+msgstr "Proxy Productie"
+
+msgid "Proxy Acceptance"
+msgstr "Proxy Acceptatie"
+
+msgid "Use the official PDOK API with your own API key or a reverse proxy to the official PDOK API with someone else''s key"
+msgstr "Gebruik de officiele PDOK API met je eigen API key of een reverse proxy naar de officiele API met iemand anders z''n key"

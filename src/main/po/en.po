@@ -52,6 +52,12 @@ msgstr "URL of the PDOK Report API (acceptance environment)"
 msgid "API key for accessing the PDOK Report API (acceptance environment)"
 msgstr "API key for accessing the PDOK report API (acceptance environment)"
 
+msgid "URL of the PDOK report API (proxy)"
+msgstr "URL of the PDOK report API (proxy)"
+
+msgid "URL of the PDOK Report API (proxy acceptance environment)"
+msgstr "URL of the PDOK Report API (proxy acceptance environment)"
+
 msgid "Use Fiddler proxy (on local default port)"
 msgstr "Use Fiddler proxy (on local default port)"
 
@@ -274,3 +280,24 @@ msgstr "No reports found"
 
 msgid "Uploading report to server…"
 msgstr "Uploading report to server…"
+
+msgid "Report"
+msgstr "Report"
+
+msgid "Use Reports API"
+msgstr "Use Reports API"
+
+msgid "PDOK Production"
+msgstr "PDOK Production"
+
+msgid "PDOK Acceptance"
+msgstr "PDOK Acceptance"
+
+msgid "Proxy Production"
+msgstr "Proxy Production"
+
+msgid "Proxy Acceptance"
+msgstr "Proxy Acceptance"
+
+msgid "Use the official PDOK API with your own API key or a reverse proxy to the official PDOK API with someone else''s key"
+msgstr "Use the official PDOK API with your own API key or a reverse proxy to the official PDOK API with someone else''s key"

@@ -195,7 +195,7 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
     JPanel reportApiPanel = new JPanel();
     reportApiPanel.add(new JLabel(I18n.tr("Use Reports API")));
     reportApiPanel.add(reportApiComboBox);
-    reportApiPanel.add(new JLabel(I18n.tr("Use the official PDOK API with your own API key or a reverse proxy to the official PDOK API hosted by Sander H without the need for your own API key")));
+    reportApiPanel.add(new JLabel(I18n.tr("Use the official PDOK API with your own API key or a reverse proxy to the official PDOK API with someone else''s key")));
     mainPanel.add(reportApiPanel, GBC.eol());
     
     mainPanel.add(apiUrlLabel, GBC.std());
