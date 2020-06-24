@@ -17,9 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import org.openstreetmap.josm.data.osm.DataSelectionListener;
 import org.openstreetmap.josm.data.osm.OsmPrimitive;
 import org.openstreetmap.josm.data.preferences.AbstractProperty.ValueChangeListener;
@@ -33,6 +30,7 @@ import org.openstreetmap.josm.plugins.nl_pdok_report.gui.boilerplate.ReportButto
 import org.openstreetmap.josm.plugins.nl_pdok_report.utils.ReportProperties;
 import org.openstreetmap.josm.plugins.nl_pdok_report.utils.ReportURL;
 import org.openstreetmap.josm.tools.I18n;
+import org.openstreetmap.josm.tools.Logging;
 
 public final class ReportInfoPanel extends ToggleDialog implements ReportDataListener, DataSelectionListener {
   private static final long serialVersionUID = 8754784357845006162L;
@@ -199,7 +197,7 @@ public final class ReportInfoPanel extends ToggleDialog implements ReportDataLis
    */
   @Override
   public synchronized void selectedReportChanged(final AbstractReport oldReport, final AbstractReport newReport) {
-    L.debug(
+    Logging.debug(
       String.format(
         "Selected report changed from %s to %s.",
         oldReport instanceof ReportBAG ? ((ReportBAG) oldReport).getReportNumberFull() : "‹none›",
@@ -280,6 +278,6 @@ public final class ReportInfoPanel extends ToggleDialog implements ReportDataLis
   @Override
   public synchronized void selectionChanged(final SelectionChangeEvent event) {
     final Collection<OsmPrimitive> sel = event.getSelection();
-    L.debug(String.format("Selection changed. %d primitives are selected.", sel == null ? 0 : sel.size()));
+    Logging.debug(String.format("Selection changed. %d primitives are selected.", sel == null ? 0 : sel.size()));
   }
 }
