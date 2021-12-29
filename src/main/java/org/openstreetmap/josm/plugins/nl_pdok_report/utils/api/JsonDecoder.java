@@ -122,7 +122,7 @@ public final class JsonDecoder {
    * since 1970-01-01T00:00:00.000+0000).
    * 
    * @param timestamp
-   *          the timestamp formatted according to the format <code>yyyy-MM-dd'T'HH:mm:ss.SSSX</code>
+   *          the timestamp formatted according to the format <code>yyyy-MM-dd'T'HH:mm:ss.SSSX or <code>yyyy-MM-dd'T'HH:mm:ss</code>
    * @return the point in time as a {@link Long} value representing the UNIX epoch time, or <code>null</code> if the
    *         parameter does not match the required format (this also triggers a warning via
    *         {@link Logging#warn(Throwable)}), or the parameter is <code>null</code>.
@@ -130,7 +130,18 @@ public final class JsonDecoder {
   static Long decodeTimestamp(final String timestamp) {
     if (timestamp != null) {
       try {
-        return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX", Locale.UK).parse(timestamp).getTime();
+        if (timestamp.matches("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}[\\+-]\\d{2}:\\d{2}$"))
+        {
+          return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX", Locale.UK).parse(timestamp).getTime();
+        }
+        else if (timestamp.matches("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\+-]\\d{2}:\\d{2}$"))
+        {
+          return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX", Locale.UK).parse(timestamp).getTime();
+        }
+        else
+        {
+          throw new ParseException("Could not decode time from the timestamp `%s`", 0);
+        }
       } catch (ParseException e) {
         StackTraceElement calledBy = e.getStackTrace()[Math.min(e.getStackTrace().length - 1, 2)];
         Logging.log(
@@ -150,7 +161,7 @@ public final class JsonDecoder {
    * 1970-01-01T00:00:00.000+0000).
    * 
    * @param date
-   *          the date formatted according to the format <code>yyyy-MM-dd'T'HH:mm:ss.SSSX</code>
+   *          the date formatted according to the format <code>yyyy-MM-dd'T'HH:mm:ss.SSSX</code> or <code>yyyy-MM-dd'T'HH:mm:ssX</code>
    * @return the point in time as a {@link Long} value representing a {@link Date}, or <code>null</code> if the
    *         parameter does not match the required format (this also triggers a warning via
    *         {@link Logging#warn(Throwable)}), or the parameter is <code>null</code>.
@@ -158,7 +169,18 @@ public final class JsonDecoder {
   static Date decodeDate(final String date) {
     if (date != null) {
       try {
-        return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX", Locale.UK).parse(date);
+        if (date.matches("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}[\\+-]\\d{2}:\\d{2}$"))
+        {
+          return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX", Locale.UK).parse(date);
+        }
+        else if (date.matches("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\+-]\\d{2}:\\d{2}$"))
+        {
+          return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX", Locale.UK).parse(date);
+        }
+        else
+        {
+          throw new ParseException("Could not decode time from the timestamp `%s`", 0);
+        }
       } catch (ParseException e) {
         StackTraceElement calledBy = e.getStackTrace()[Math.min(e.getStackTrace().length - 1, 2)];
         Logging.log(
