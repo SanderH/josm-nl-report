@@ -99,10 +99,12 @@ public final class JsonNewReportEncoder {
   
     if (!ReportProperties.USER_ORGANISATION.get().isEmpty())
     {
-      properties.add("EigenVeld1", ReportProperties.USER_ORGANISATION.get());
+      properties.add("Organisatie", ReportProperties.USER_ORGANISATION.get());
       // Optioneel. Aanvullende informatie kunt u kwijt in extra velden: denk aan organisatie van de terugmelder, extra
       // informatie voor de bronhouder, contactinformatie of een eigen referentie van de terugmelding. Let op: op dit
       // moment alleen bruikbaar bij registraties BAG en KLIC.
+      // Optioneel. U kunt diverse eigen velden naar wens toevoegen. Alleen de JSON data types Number, String en Boolean 
+      // zijn toegestaan. In plaats van EigenVeld1 of EigenVeld2 kunt u zelf een passende naam kiezen.
     }
     
     // final JsonArrayBuilder bagChanges = Json.createArrayBuilder();
