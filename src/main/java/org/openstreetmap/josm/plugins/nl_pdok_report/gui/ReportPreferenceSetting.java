@@ -311,7 +311,6 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
     headerPanel.repaint();
   }
 
-  @SuppressWarnings("PMD.ShortMethodName")
   @Override
   public boolean ok() {
 //    ReportProperties.DOWNLOAD_MODE.put(DOWNLOAD_MODE.fromLabel(downloadModeComboBox.getSelectedItem().toString()).getPrefId());

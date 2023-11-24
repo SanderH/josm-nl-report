@@ -10,7 +10,6 @@ import org.openstreetmap.josm.data.preferences.NamedColorProperty;
 import org.openstreetmap.josm.data.preferences.StringProperty;
 import org.openstreetmap.josm.gui.layer.OsmDataLayer;
 import org.openstreetmap.josm.plugins.nl_pdok_report.io.download.ReportDownloader;
-import org.openstreetmap.josm.plugins.nl_pdok_report.io.download.ReportDownloader.DOWNLOAD_MODE;
 import org.openstreetmap.josm.tools.I18n;
 
 public final class ReportProperties {

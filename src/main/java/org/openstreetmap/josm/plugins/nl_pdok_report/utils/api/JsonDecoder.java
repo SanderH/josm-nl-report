@@ -109,7 +109,6 @@ public final class JsonDecoder {
    * @return a double array which contains the two values in the same order, or <code>null</code> if the parameter was
    *         not a {@link JsonArray} of exactly size 2 containing two {@link JsonNumber}s
    */
-  @SuppressWarnings("PMD.ReturnEmptyArrayRatherThanNull")
   static double[] decodeDoublePair(final JsonArray json) {
     if (json != null && json.size() == 2 && json.get(0) instanceof JsonNumber && json.get(1) instanceof JsonNumber) {
       return new double[] { json.getJsonNumber(0).doubleValue(), json.getJsonNumber(1).doubleValue() };

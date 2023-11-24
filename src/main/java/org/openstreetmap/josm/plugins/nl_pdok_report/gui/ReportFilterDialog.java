@@ -14,15 +14,12 @@ import java.util.function.Predicate;
 import javax.swing.AbstractAction;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
-import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
 import org.openstreetmap.josm.gui.SideButton;
 import org.openstreetmap.josm.gui.dialogs.ToggleDialog;
-import org.openstreetmap.josm.gui.widgets.DisableShortcutsOnFocusGainedTextField;
 import org.openstreetmap.josm.plugins.nl_pdok_report.AbstractReport;
 import org.openstreetmap.josm.plugins.nl_pdok_report.ReportBAG;
 import org.openstreetmap.josm.plugins.nl_pdok_report.ReportDataListener;

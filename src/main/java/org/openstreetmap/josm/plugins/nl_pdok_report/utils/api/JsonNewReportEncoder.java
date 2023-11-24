@@ -4,8 +4,6 @@ package org.openstreetmap.josm.plugins.nl_pdok_report.utils.api;
 import java.util.Objects;
 
 import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonNumber;
 import javax.json.JsonObjectBuilder;
 
 import org.geotools.referencing.CRS;
@@ -17,7 +15,6 @@ import org.opengis.referencing.operation.TransformException;
 
 import org.openstreetmap.josm.data.coor.LatLon;
 import org.openstreetmap.josm.plugins.nl_pdok_report.ReportNewBAG;
-import org.openstreetmap.josm.plugins.nl_pdok_report.ReportPlugin;
 import org.openstreetmap.josm.plugins.nl_pdok_report.utils.ReportProperties;
 
 /**

@@ -11,11 +11,9 @@ import java.awt.Insets;
 import java.util.Collection;
 import java.util.Optional;
 
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 import org.openstreetmap.josm.data.osm.DataSelectionListener;
 import org.openstreetmap.josm.data.osm.OsmPrimitive;
@@ -34,7 +32,6 @@ import org.openstreetmap.josm.tools.Logging;
 
 public final class ReportInfoPanel extends ToggleDialog implements ReportDataListener, DataSelectionListener {
   private static final long serialVersionUID = 8754784357845006162L;
-  private static final Log L = LogFactory.getLog(ReportInfoPanel.class);
   private static ReportInfoPanel instance;
 
   private final JLabel lblReportNumber = new JLabel(tr("Registration number"));

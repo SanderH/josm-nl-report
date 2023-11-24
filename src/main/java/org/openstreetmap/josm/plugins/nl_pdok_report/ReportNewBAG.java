@@ -6,8 +6,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.ParseException;
-import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,7 +17,6 @@ import org.openstreetmap.josm.data.osm.Node;
 import org.openstreetmap.josm.gui.MapView;
 import org.openstreetmap.josm.gui.layer.geoimage.GeoImageLayer;
 import org.openstreetmap.josm.gui.layer.geoimage.ImageEntry;
-import org.openstreetmap.josm.plugins.nl_pdok_report.utils.ReportUtils;
 import org.openstreetmap.josm.plugins.nl_pdok_report.utils.api.JsonNewReportEncoder;
 import org.openstreetmap.josm.tools.Logging;
 

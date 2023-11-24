@@ -1,13 +1,7 @@
 // License: GPL. For details, see LICENSE file.
 package org.openstreetmap.josm.plugins.nl_pdok_report.oauth;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.openstreetmap.josm.plugins.nl_pdok_report.utils.ReportProperties;
-import org.openstreetmap.josm.plugins.nl_pdok_report.utils.ReportURL;
-import org.openstreetmap.josm.tools.Logging;
 
 /**
  * Represents the current logged in user and stores its data.

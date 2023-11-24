@@ -1,8 +1,6 @@
 // License: GPL. For details, see LICENSE file.
 package org.openstreetmap.josm.plugins.nl_pdok_report.actions;
 
-import static org.openstreetmap.josm.tools.I18n.tr;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 

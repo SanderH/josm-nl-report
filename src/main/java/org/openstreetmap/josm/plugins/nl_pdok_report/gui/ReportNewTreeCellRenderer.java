@@ -7,7 +7,6 @@ import javax.swing.Icon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-import org.openstreetmap.josm.plugins.nl_pdok_report.AbstractReport;
 import org.openstreetmap.josm.tools.ImageProvider;
 
 /**

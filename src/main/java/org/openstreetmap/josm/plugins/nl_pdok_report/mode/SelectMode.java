@@ -8,7 +8,6 @@ import java.awt.Point;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.util.Objects;
-import java.util.concurrent.ConcurrentSkipListSet;
 
 import javax.swing.SwingUtilities;
 

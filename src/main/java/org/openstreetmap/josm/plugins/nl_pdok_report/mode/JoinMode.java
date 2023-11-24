@@ -8,7 +8,6 @@ import java.awt.Cursor;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
-import java.util.Arrays;
 
 import org.openstreetmap.josm.data.Bounds;
 import org.openstreetmap.josm.gui.MainApplication;
@@ -16,7 +15,6 @@ import org.openstreetmap.josm.gui.MapView;
 import org.openstreetmap.josm.plugins.nl_pdok_report.AbstractReport;
 import org.openstreetmap.josm.plugins.nl_pdok_report.ReportLayer;
 import org.openstreetmap.josm.plugins.nl_pdok_report.ReportNewBAG;
-import org.openstreetmap.josm.plugins.nl_pdok_report.history.ReportRecord;
 
 /**
  * In this mode the user can join pictures to make sequences or unjoin them.

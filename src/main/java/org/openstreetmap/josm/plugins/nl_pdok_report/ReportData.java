@@ -23,7 +23,7 @@ import org.openstreetmap.josm.tools.Logging;
  * Database class for all the {@link AbstractReport} objects.
  *
  * @author nokutu
- * @see AbstractReportAbstractReport
+ * @see AbstractReport
  */
 public class ReportData {
   private Set<AbstractReport> reports = ConcurrentHashMap.newKeySet();
