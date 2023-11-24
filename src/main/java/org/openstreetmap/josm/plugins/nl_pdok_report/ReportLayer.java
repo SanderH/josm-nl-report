@@ -69,7 +69,7 @@ import org.openstreetmap.josm.tools.Logging;
 /**
  * This class represents the layer shown in JOSM. There can only exist one instance of this object.
  *
- * @author nokutu
+ * @author SanderH
  */
 public final class ReportLayer extends AbstractModifiableLayer
   implements ActiveLayerChangeListener, ReportDataListener {
@@ -480,7 +480,7 @@ public final class ReportLayer extends AbstractModifiableLayer
   /**
    * Action used to delete images.
    *
-   * @author nokutu
+   * @author SanderH
    */
   private class DeleteReportAction extends AbstractAction {
 

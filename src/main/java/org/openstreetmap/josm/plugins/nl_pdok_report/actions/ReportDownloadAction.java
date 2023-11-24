@@ -20,7 +20,7 @@ import org.openstreetmap.josm.tools.Shortcut;
  * Action that triggers the plugin. If in automatic mode, it will automatically download the images in the areas where
  * there is OSM data.
  *
- * @author nokutu
+ * @author SanderH
  *
  */
 public class ReportDownloadAction extends JosmAction {

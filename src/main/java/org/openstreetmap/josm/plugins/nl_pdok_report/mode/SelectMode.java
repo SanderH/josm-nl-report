@@ -28,7 +28,7 @@ import org.openstreetmap.josm.plugins.nl_pdok_report.utils.ReportProperties;
 /**
  * Handles the input event related with the layer. Mainly clicks.
  *
- * @author nokutu
+ * @author SanderH
  */
 public class SelectMode extends AbstractMode {
   private AbstractReport closest;

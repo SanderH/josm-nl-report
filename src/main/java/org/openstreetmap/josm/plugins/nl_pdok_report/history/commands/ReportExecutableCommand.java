@@ -8,7 +8,7 @@ import org.openstreetmap.josm.plugins.nl_pdok_report.AbstractReport;
 /**
  * Superclass for those commands that must be executed after creation.
  *
- * @author nokutu
+ * @author SanderH
  *
  */
 public abstract class ReportExecutableCommand extends ReportCommand {

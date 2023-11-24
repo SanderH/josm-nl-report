@@ -16,7 +16,7 @@ import org.openstreetmap.josm.plugins.nl_pdok_report.oauth.ReportUser;
 /**
  * JPanel used when uploading pictures.
  *
- * @author nokutu
+ * @author SanderH
  *
  */
 public class ReportUploadDialog extends JPanel {

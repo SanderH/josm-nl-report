@@ -4,7 +4,7 @@ package org.openstreetmap.josm.plugins.nl_pdok_report.history;
 /**
  * Interface for the listener of the {@link ReportRecord} class
  *
- * @author nokutu
+ * @author SanderH
  * @see ReportRecord
  */
 @FunctionalInterface

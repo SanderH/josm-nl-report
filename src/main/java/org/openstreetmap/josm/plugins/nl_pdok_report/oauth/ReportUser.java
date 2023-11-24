@@ -6,7 +6,7 @@ import org.openstreetmap.josm.plugins.nl_pdok_report.utils.ReportProperties;
 /**
  * Represents the current logged in user and stores its data.
  *
- * @author nokutu
+ * @author SanderH
  *
  */
 public final class ReportUser {

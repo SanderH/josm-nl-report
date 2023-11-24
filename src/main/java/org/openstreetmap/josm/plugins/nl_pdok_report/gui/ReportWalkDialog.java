@@ -13,7 +13,7 @@ import javax.swing.SpinnerNumberModel;
 /**
  * Dialog to set the walk mode options.
  *
- * @author nokutu
+ * @author SanderH
  *
  */
 public class ReportWalkDialog extends JPanel {

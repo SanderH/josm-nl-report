@@ -23,7 +23,7 @@ import org.openstreetmap.josm.tools.Logging;
 /**
  * A FeedbackImoprtedImage object represents a picture imported locally.
  *
- * @author nokutu
+ * @author SanderH
  *
  */
 public class ReportNewBAG extends AbstractReport {

@@ -49,7 +49,7 @@ import org.openstreetmap.josm.tools.Logging;
 /**
  * Creates the preferences panel for the plugin.
  *
- * @author nokutu
+ * @author SanderH
  *
  */
 public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLoginListener {
@@ -340,7 +340,7 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
   /**
    * Request empty dataset from PDOK to test API key.
    *
-   * @author nokutu
+   * @author SanderH
    *
    */
   private final class ValidateAction extends AbstractAction {
@@ -390,7 +390,7 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
   /**
    * Request empty dataset from PDOK to test Acceptance API key.
    *
-   * @author nokutu
+   * @author SanderH
    *
    */
   private final class ValidateActAction extends AbstractAction {

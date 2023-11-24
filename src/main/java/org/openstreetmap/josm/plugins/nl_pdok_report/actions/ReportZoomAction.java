@@ -17,7 +17,7 @@ import org.openstreetmap.josm.tools.ImageProvider.ImageSizes;
 /**
  * Zooms to the currently selected image.
  *
- * @author nokutu
+ * @author SanderH
  *
  */
 public class ReportZoomAction extends JosmAction implements ReportDataListener {

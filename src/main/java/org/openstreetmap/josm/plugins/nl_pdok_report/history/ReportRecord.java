@@ -12,7 +12,7 @@ import org.openstreetmap.josm.plugins.nl_pdok_report.history.commands.ReportExec
 /**
  * History record system in order to let the user undo and redo commands.
  *
- * @author nokutu
+ * @author SanderH
  *
  */
 public class ReportRecord {

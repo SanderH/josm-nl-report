@@ -11,7 +11,7 @@ import org.openstreetmap.josm.plugins.nl_pdok_report.ReportLayer;
 /**
  * Imports a set of images stored locally.
  *
- * @author nokutu
+ * @author SanderH
  *
  */
 public class CommandImport extends ReportExecutableCommand {

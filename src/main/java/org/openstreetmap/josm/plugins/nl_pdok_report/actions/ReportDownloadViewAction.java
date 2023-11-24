@@ -19,7 +19,7 @@ import org.openstreetmap.josm.tools.Shortcut;
 /**
  * If in "download images in visible area" mode, downloads all the images in the current view.
  *
- * @author nokutu
+ * @author SanderH
  *
  */
 public class ReportDownloadViewAction extends JosmAction implements ValueChangeListener<String> {

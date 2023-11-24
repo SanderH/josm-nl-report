@@ -13,7 +13,7 @@ import org.openstreetmap.josm.plugins.nl_pdok_report.ReportLayer;
 /**
  * Command used to delete a set of images.
  *
- * @author nokutu
+ * @author SanderH
  *
  */
 public class CommandDelete extends ReportExecutableCommand {

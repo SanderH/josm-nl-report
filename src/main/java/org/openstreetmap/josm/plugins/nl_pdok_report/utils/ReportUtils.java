@@ -26,7 +26,7 @@ import org.openstreetmap.josm.tools.I18n;
 /**
  * Set of utilities.
  *
- * @author nokutu
+ * @author SanderH
  */
 public final class ReportUtils {
 

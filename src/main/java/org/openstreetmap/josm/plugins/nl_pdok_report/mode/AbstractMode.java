@@ -18,7 +18,7 @@ import org.openstreetmap.josm.plugins.nl_pdok_report.io.download.ReportDownloade
 /**
  * Superclass for all the mode of the {@link ReportLayer}.
  *
- * @author nokutu
+ * @author SanderH
  * @see ReportLayer
  */
 public abstract class AbstractMode extends MouseAdapter implements ZoomChangeListener {

@@ -14,7 +14,7 @@ import org.openstreetmap.josm.tools.Logging;
 /**
  * A ReportBAG object represents each of the reports.
  *
- * @author nokutu
+ * @author SanderH
  * @see ReportData
  */
 public class ReportBAG extends AbstractReport {

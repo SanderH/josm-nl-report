@@ -19,7 +19,7 @@ import org.openstreetmap.josm.plugins.nl_pdok_report.ReportNewBAG;
 /**
  * In this mode the user can join pictures to make sequences or unjoin them.
  *
- * @author nokutu
+ * @author SanderH
  *
  */
 public class JoinMode extends AbstractMode {

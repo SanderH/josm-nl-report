@@ -19,7 +19,7 @@ import org.openstreetmap.josm.tools.Logging;
  * Class that concentrates all the ways of downloading of the plugin. All the download petitions will be managed one by
  * one.
  *
- * @author nokutu
+ * @author SanderH
  */
 public final class ReportDownloader {
 

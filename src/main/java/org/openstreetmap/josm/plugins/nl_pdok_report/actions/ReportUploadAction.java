@@ -22,7 +22,7 @@ import org.openstreetmap.josm.tools.ImageProvider.ImageSizes;
  * Action called when an upload to the Feedback servers is going to be performed. It lets you select a couple of
  * options.
  *
- * @author nokutu
+ * @author SanderH
  *
  */
 public class ReportUploadAction extends JosmAction implements ReportDataListener {

@@ -4,7 +4,7 @@ package org.openstreetmap.josm.plugins.nl_pdok_report;
 /**
  * Interface for listeners of the class {@link ReportData}.
  *
- * @author nokutu
+ * @author SanderH
  *
  */
 public interface ReportDataListener {

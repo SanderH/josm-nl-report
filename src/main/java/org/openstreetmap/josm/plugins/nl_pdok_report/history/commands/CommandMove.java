@@ -11,7 +11,7 @@ import org.openstreetmap.josm.plugins.nl_pdok_report.ReportLayer;
 /**
  * Command created when an image's position is changed.
  *
- * @author nokutu
+ * @author SanderH
  *
  */
 public class CommandMove extends ReportCommand {

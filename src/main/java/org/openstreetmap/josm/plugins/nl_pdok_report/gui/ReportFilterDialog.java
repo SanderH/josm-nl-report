@@ -31,7 +31,7 @@ import org.openstreetmap.josm.tools.ImageProvider;
 /**
  * ToggleDialog that lets you filter the images that are being shown.
  *
- * @author nokutu
+ * @author SanderH
  * @see ReportFilterChooseSigns
  */
 public final class ReportFilterDialog extends ToggleDialog implements ReportDataListener {

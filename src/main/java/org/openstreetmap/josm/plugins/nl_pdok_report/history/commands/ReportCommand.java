@@ -9,7 +9,7 @@ import org.openstreetmap.josm.plugins.nl_pdok_report.AbstractReport;
 /**
  * Abstract class for any Feedback command.
  *
- * @author nokutu
+ * @author SanderH
  *
  */
 public abstract class ReportCommand {

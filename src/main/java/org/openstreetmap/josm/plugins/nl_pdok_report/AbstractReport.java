@@ -7,7 +7,7 @@ import org.openstreetmap.josm.data.coor.LatLon;
  * Abstract superclass for all image objects. At the moment there are just 2, {@link ReportNewBAG} and
  * {@link ReportBAG}.
  *
- * @author nokutu
+ * @author SanderH
  *
  */
 public abstract class AbstractReport implements Comparable<AbstractReport> {

@@ -11,7 +11,7 @@ import org.openstreetmap.josm.tools.I18n;
 import org.openstreetmap.josm.tools.Logging;
 
 /**
- * @author nokutu
+ * @author SanderH
  *
  */
 public final class PluginState {
