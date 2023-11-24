@@ -3,6 +3,7 @@ package org.openstreetmap.josm.plugins.nl_pdok_report;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -10,6 +11,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
+import org.openstreetmap.josm.data.Data;
+import org.openstreetmap.josm.data.DataSource;
 import org.openstreetmap.josm.data.Bounds;
 import org.openstreetmap.josm.data.coor.LatLon;
 import org.openstreetmap.josm.gui.MainApplication;
@@ -25,7 +28,7 @@ import org.openstreetmap.josm.tools.Logging;
  * @author SanderH
  * @see AbstractReport
  */
-public class ReportData {
+public class ReportData implements Data {
   private Set<AbstractReport> reports = ConcurrentHashMap.newKeySet();
   /**
    * The image currently selected, this is the one being shown.
@@ -324,5 +327,10 @@ public class ReportData {
       reports.clear();
       reports.addAll(newReport);
     }
+  }
+  
+  @Override
+  public Collection<DataSource> getDataSources() {
+    return Collections.emptyList();
   }
 }
