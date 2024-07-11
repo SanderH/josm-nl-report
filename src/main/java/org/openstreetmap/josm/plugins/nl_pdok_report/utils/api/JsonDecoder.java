@@ -25,7 +25,6 @@ import org.openstreetmap.josm.data.coor.LatLon;
 import org.openstreetmap.josm.tools.Logging;
 
 public final class JsonDecoder {
-  private static MathTransform transform;
 
   private JsonDecoder() {
     // Private constructor to avoid instantiation
@@ -64,21 +63,6 @@ public final class JsonDecoder {
     return result;
   }
 
-  public static void decodeCRS(final JsonObject json) {
-    transform = IdentityTransform.create(2);
-    JsonValue crs = json.get("crs");
-    JsonValue properties = ((JsonObject) crs).get("properties");
-    String crsName = ((JsonObject) properties).getString("name");
-
-    try {
-      CoordinateReferenceSystem crsReport = CRS.decode(crsName, true);
-      CoordinateReferenceSystem osmCrs = CRS.decode("EPSG:4326");
-      transform = CRS.findMathTransform(crsReport, osmCrs);
-    } catch (FactoryException e) {
-      throw new UnsupportedOperationException("Unknown CRS " + crsName, e);
-    }
-  }
-
   /**
    * Decodes a {@link JsonArray} of exactly size 2 to a {@link LatLon} instance. The first value in the
    * {@link JsonArray} is treated as longitude, the second one as latitude.
@@ -89,16 +73,8 @@ public final class JsonDecoder {
    *         exactly size 2 containing two {@link JsonNumber}s.
    */
   static LatLon decodeLatLon(final JsonArray json) {
-    final double[] result = decodeDoublePair(json);
-    try {
-      transform.transform(result, 0, result, 0, 1);
-    } catch (TransformException e) {
-      throw new UnsupportedOperationException("Cannot transform a point from the input dataset", e);
-    }
-    if (result != null) {
-      return new LatLon(result[1], result[0]);  // swap coordinated???
-    }
-    return null;
+	    final double[] result = decodeDoublePair(json);
+	    return new LatLon(result[1], result[0]);
   }
 
   /**

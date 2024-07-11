@@ -298,8 +298,6 @@ public class ReportData implements Data {
     if (report != null) {
       String coordOSM = report.getTempLatLon().toDisplayString();
       Logging.debug("OSM: " + coordOSM);
-      String coordPDOK = JsonNewReportEncoder.reportLatLon(report.getTempLatLon()).toDisplayString();
-      Logging.debug("PDOK: " + coordPDOK);
     }
   }
 

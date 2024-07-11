@@ -22,7 +22,6 @@ public final class JsonReportDetailsDecoder {
 
   public static void decodeReportInfos(final JsonObject json, final ReportData data) {
     if (data != null) {
-      JsonDecoder.decodeCRS(json);
       JsonDecoder.decodeFeatureCollection(json, j -> {
         decodeReportInfo(j, data);
         return null;

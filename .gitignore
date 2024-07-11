@@ -1,3 +1,8 @@
+/bin
+/target
+/build
+/dist
+
 # Compiled class file
 *.class
 

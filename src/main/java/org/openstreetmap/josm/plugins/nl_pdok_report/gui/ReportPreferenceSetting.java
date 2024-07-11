@@ -372,6 +372,7 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
 
         switch (connection.getResponseCode())
         {
+        case 200:
         case 204:
           onLogin(apiKey.getText());
           break;
@@ -422,6 +423,7 @@ public class ReportPreferenceSetting implements SubPreferenceSetting, ReportLogi
 
         switch (connection.getResponseCode())
         {
+        case 200:
         case 204:
           onLoginAct(apiKeyAct.getText());
           break;

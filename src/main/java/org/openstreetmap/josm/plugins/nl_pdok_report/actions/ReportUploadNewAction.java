@@ -77,11 +77,11 @@ public class ReportUploadNewAction extends JosmAction {
           {
             MultipartUtility multipart = new MultipartUtility(ReportURL.submitReport(), "UTF-8", ReportProperties.USE_FIDDLER.get());
             multipart.setRequestProperty("Accept", "application/json");
+            multipart.setRequestProperty("Content-Crs",  ReportURL.getCrs4326());
             multipart.setRequestProperty("User-Agent", "JOSM");
             if (reportApi.needsKey()) {
               multipart.setRequestProperty("apikey", token);
             }
-            multipart.setRequestProperty("API-Version", "1.0.0");
             //multipart.addFilePart("files", <file>);
             multipart.StartStream();
             multipart.addFormField("melding", json.toString(), "application/json");
@@ -91,7 +91,7 @@ public class ReportUploadNewAction extends JosmAction {
             Logging.debug("HTTP request finished with response code " + response.ResponseCode);
             switch (response.ResponseCode)
             {
-            case 200:
+            case 200: // old v1, it's 201 with v2
               final JsonObject jsonObject = Json.createReader(new StringReader(response.Message.toString())).readObject();
               final String reportNumberFull = jsonObject.getString("meldingsNummerVolledig");
               I18n.marktr("rejected");
@@ -102,6 +102,13 @@ public class ReportUploadNewAction extends JosmAction {
               Logging.debug(message);
               ReportLayer.getInstance().getData().remove(newReport);
               break;
+            case 201:
+            	final String reportLocation = response.ResponseReference;
+                final String messageLocation = I18n
+                .tr("Report submitted. Registration number: {0}", reportLocation);
+              Logging.info(messageLocation);
+              ReportLayer.getInstance().getData().remove(newReport);
+            	break;
             case 400:
             case 401: 
               final JsonObject jsonObjectFail = Json.createReader(new StringReader(response.Message.toString())).readObject();

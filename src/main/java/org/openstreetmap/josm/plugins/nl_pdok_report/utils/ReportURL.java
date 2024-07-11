@@ -18,19 +18,25 @@ import org.openstreetmap.josm.tools.Logging;
 
 public final class ReportURL {
   /** Base URL of the Report API. */
-  private static final String DEFAULT_API_URL = "https://api.kadaster.nl/tms/v1/terugmeldingen";
-  private static final String DEFAULT_API_URL_ACT = "https://api.acceptatie.kadaster.nl/tms/v1/terugmeldingen";
+  private static final String DEFAULT_API_URL = "https://api.kadaster.nl/tms/v2/terugmeldingen";
+  private static final String DEFAULT_API_URL_ACT = "https://api.acceptatie.kadaster.nl/tms/v2/terugmeldingen";
   private static final String REQUEST_API_KEY_URL = "https://formulieren.kadaster.nl/aanvragen_api_key_terumelding_api";
   private static final SimpleDateFormat API_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
   private static final String REPORT_TYPE = "BAG";
   private static final String REPORT_STATUS_CODES = "NIEUW,IN_ONDERZOEK,GOEDGEKEURD,AFGEWEZEN,AFGEROND";
-  private static final String DEFAULT_API_PROXY_URL = "https://terugmeldingen.proxy.tools4osm.nl/v1";
-  private static final String DEFAULT_API_PROXY_URL_ACT = "https://terugmeldingen.proxy.tools4osm.nl/act/v1";
+  private static final String REPORT_CRS_4326 = "https://www.opengis.net/def/crs/EPSG/0/4326";
+  private static final String DEFAULT_API_PROXY_URL = "https://terugmeldingen.proxy.tools4osm.nl/v2/terugmeldingen";
+  private static final String DEFAULT_API_PROXY_URL_ACT = "https://terugmeldingen.proxy.tools4osm.nl/act/v2/terugmeldingen";
 
   private ReportURL() {
     // Private constructor to avoid instantiation
   }
 
+  public static String getCrs4326()
+  {
+	  return REPORT_CRS_4326;
+  }
+  
   /**
    * @return the URL where you'll find an empty result usefull for validating the API key
 
@@ -85,12 +91,13 @@ public final class ReportURL {
     querystring.put("peildatum", API_DATE_FORMAT.format(new Date(System.currentTimeMillis())));
     querystring.put("registratie", REPORT_TYPE);
     querystring.put("statusCode", REPORT_STATUS_CODES);
+    querystring.put("crs", REPORT_CRS_4326);
 
     return string2URL(getBaseApiUrl(), "", queryString(querystring));
   }
 
   /**
-   * @return the URL where you'll find an empty result usefull for validating the API key
+   * @return the URL where you'll find an empty result useful for validating the API key
    * 
    * @param act Validate acceptance environment instead of production
    */

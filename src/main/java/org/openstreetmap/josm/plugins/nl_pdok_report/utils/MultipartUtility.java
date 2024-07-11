@@ -162,7 +162,8 @@ public class MultipartUtility {
     // checks server's status code first
     response.ResponseCode = httpConn.getResponseCode();
     response.ResponseMessage = httpConn.getResponseMessage();
-    if (response.ResponseCode == HttpURLConnection.HTTP_OK)
+    if (response.ResponseCode == HttpURLConnection.HTTP_OK ||
+    	response.ResponseCode == HttpURLConnection.HTTP_CREATED)
     {
       BufferedReader reader = new BufferedReader(new InputStreamReader(httpConn.getInputStream()));
       String line = null;
@@ -170,6 +171,7 @@ public class MultipartUtility {
         response.Message.append(line);
       }
       reader.close();
+      response.ResponseReference = httpConn.getHeaderField("Location");
       httpConn.disconnect();
     } else if (response.ResponseCode == HttpURLConnection.HTTP_BAD_REQUEST || 
                response.ResponseCode == HttpURLConnection.HTTP_UNAUTHORIZED)
@@ -235,6 +237,7 @@ public class MultipartUtility {
   public class MultiPartResponse {
     public int ResponseCode;
     public String ResponseMessage;
+    public String ResponseReference;
     public StringBuilder Message;
   }
 

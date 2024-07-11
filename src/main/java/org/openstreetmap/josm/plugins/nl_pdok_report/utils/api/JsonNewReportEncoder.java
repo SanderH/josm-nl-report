@@ -29,17 +29,11 @@ public final class JsonNewReportEncoder {
   }
 
   public static JsonObjectBuilder encodeNewReport(ReportNewBAG report) {
-    LatLon reportLatLon = reportLatLon(report.getLatLon());
     JsonObjectBuilder result = Json.createObjectBuilder();
     Objects.requireNonNull(report);
     
     result.add("type", "FeatureCollection");
     result.add("name", "TerugmeldingGeneriek");
-    result
-      .add("crs", Json.createObjectBuilder()
-        .add("type", "name")
-        .add("properties", Json.createObjectBuilder()
-          .add("name", "urn:ogc:def:crs:EPSG::28992")));
     result.add(
       "features", Json.createArrayBuilder()
       .add(Json.createObjectBuilder()
@@ -48,8 +42,8 @@ public final class JsonNewReportEncoder {
         .add("geometry", Json.createObjectBuilder()
           .add("type", "Point")
           .add("coordinates", Json.createArrayBuilder()
-            .add(reportLatLon.getX())
-            .add(reportLatLon.getY())
+            .add(report.getLatLon().getX())
+            .add(report.getLatLon().getY())
           )
         )
       )

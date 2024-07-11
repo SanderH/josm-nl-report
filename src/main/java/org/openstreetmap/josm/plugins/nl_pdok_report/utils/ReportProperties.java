@@ -94,7 +94,7 @@ public final class ReportProperties {
   }
   
   public static final StringProperty API_KEY = new StringProperty("nl.bag.pdok.terugmeldapi.api.key", null);
-  public static final StringProperty API_URL = new StringProperty("nl.bag.pdok.terugmeldapi.api.url", "https://api.kadaster.nl/tms/v1/terugmeldingen");
+  public static final StringProperty API_URL = new StringProperty("nl.bag.pdok.terugmeldapi.api.url", "https://api.kadaster.nl/tms/v2/terugmeldingen");
   public static final StringProperty USER_EMAIL = new StringProperty("nl.bag.pdok.terugmeldapi.user.email", "");
   public static final StringProperty USER_ORGANISATION = new StringProperty("nl.bag.pdok.terugmeldapi.user.organisation", "OpenStreetMap contributors");
   public static final BooleanProperty SELECT_FROM_OTHER_LAYER = new BooleanProperty("nl.bag.pdok.terugmeldapi.select_from_other_layer", false);
@@ -110,10 +110,10 @@ public final class ReportProperties {
 
   //  public static final BooleanProperty USE_ACT_API = new BooleanProperty("nl.bag.pdok.terugmeldapi.api.use_act", false);
   public static final StringProperty API_KEY_ACT = new StringProperty("nl.bag.pdok.terugmeldapi.api.act_key", null);
-  public static final StringProperty API_URL_ACT = new StringProperty("nl.bag.pdok.terugmeldapi.api.act_url", "https://api.acceptatie.kadaster.nl/tms/v1/terugmeldingen");
+  public static final StringProperty API_URL_ACT = new StringProperty("nl.bag.pdok.terugmeldapi.api.act_url", "https://api.acceptatie.kadaster.nl/tms/v2/terugmeldingen");
 
-  public static final StringProperty API_PROXY_URL = new StringProperty("nl.bag.pdok.terugmeldapi.api.proxy_url", "https://terugmeldingen.proxy.tools4osm.nl/v1");
-  public static final StringProperty API_PROXY_URL_ACT = new StringProperty("nl.bag.pdok.terugmeldapi.api.proxy_act_url", "https://terugmeldingen.proxy.tools4osm.nl/act/v1");
+  public static final StringProperty API_PROXY_URL = new StringProperty("nl.bag.pdok.terugmeldapi.api.proxy_url", "https://terugmeldingen.proxy.tools4osm.nl/v2");
+  public static final StringProperty API_PROXY_URL_ACT = new StringProperty("nl.bag.pdok.terugmeldapi.api.proxy_act_url", "https://terugmeldingen.proxy.tools4osm.nl/act/v2");
   
   public static final IntegerProperty MAPOBJECT_ICON_SIZE = new IntegerProperty("nl.bag.pdok.terugmeldapi.mapobjects.iconsize", 32);
   public static final StringProperty DOWNLOAD_MODE = new StringProperty("nl.bag.pdok.terugmeldapi.download-mode", ReportDownloader.DOWNLOAD_MODE.DEFAULT.getPrefId());
