@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
-import javax.json.JsonObject;
+import jakarta.json.JsonObject;
 import javax.swing.ImageIcon;
 
 import org.openstreetmap.josm.plugins.nl_pdok_report.model.UserProfile;

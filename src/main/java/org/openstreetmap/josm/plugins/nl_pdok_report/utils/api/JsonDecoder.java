@@ -9,17 +9,10 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.function.Function;
 
-import javax.json.JsonArray;
-import javax.json.JsonNumber;
-import javax.json.JsonObject;
-import javax.json.JsonValue;
-
-import org.geotools.referencing.CRS;
-import org.geotools.referencing.operation.transform.IdentityTransform;
-import org.geotools.api.referencing.FactoryException;
-import org.geotools.api.referencing.crs.CoordinateReferenceSystem;
-import org.geotools.api.referencing.operation.MathTransform;
-import org.geotools.api.referencing.operation.TransformException;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonNumber;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonValue;
 
 import org.openstreetmap.josm.data.coor.LatLon;
 import org.openstreetmap.josm.tools.Logging;

@@ -38,7 +38,7 @@
 	<!-- enter the SVN commit message -->
 	<property name="commit.message" value="Commit message" />
 	<!-- enter the *lowest* JOSM version this plugin is currently compatible with -->
-	<property name="plugin.main.version" value="16402" />
+	<property name="plugin.main.version" value="18746" />
 	<property name="plugin.early" value="false" />
 	<property name="plugin.icon" value="images/report-logo.svg" />
 	<property name="plugin.class" value="org.openstreetmap.josm.plugins.nl_pdok_report.ReportPlugin" />

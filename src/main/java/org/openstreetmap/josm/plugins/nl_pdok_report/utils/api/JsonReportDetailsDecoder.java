@@ -3,9 +3,9 @@ package org.openstreetmap.josm.plugins.nl_pdok_report.utils.api;
 
 import java.util.Date;
 
-import javax.json.JsonArray;
-import javax.json.JsonObject;
-import javax.json.JsonValue;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonValue;
 
 import org.openstreetmap.josm.data.coor.LatLon;
 import org.openstreetmap.josm.plugins.nl_pdok_report.ReportBAG;

@@ -6,9 +6,9 @@ import java.awt.event.KeyEvent;
 import java.io.StringReader;
 import java.util.List;
 
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonObject;
+import jakarta.json.Json;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonObject;
 import javax.swing.JOptionPane;
 
 import org.openstreetmap.josm.actions.JosmAction;

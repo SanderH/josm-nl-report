@@ -7,9 +7,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.function.Function;
 
-import javax.json.Json;
-import javax.json.JsonException;
-import javax.json.JsonReader;
+import jakarta.json.Json;
+import jakarta.json.JsonException;
+import jakarta.json.JsonReader;
 
 import org.openstreetmap.josm.data.Bounds;
 import org.openstreetmap.josm.plugins.nl_pdok_report.ReportData;

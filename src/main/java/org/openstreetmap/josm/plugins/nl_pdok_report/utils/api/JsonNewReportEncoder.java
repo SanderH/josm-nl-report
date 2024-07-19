@@ -3,8 +3,8 @@ package org.openstreetmap.josm.plugins.nl_pdok_report.utils.api;
 
 import java.util.Objects;
 
-import javax.json.Json;
-import javax.json.JsonObjectBuilder;
+import jakarta.json.Json;
+import jakarta.json.JsonObjectBuilder;
 
 import org.geotools.referencing.CRS;
 import org.geotools.referencing.operation.transform.IdentityTransform;

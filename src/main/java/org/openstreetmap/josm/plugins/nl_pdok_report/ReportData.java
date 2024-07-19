@@ -19,7 +19,6 @@ import org.openstreetmap.josm.gui.MainApplication;
 import org.openstreetmap.josm.gui.MapView;
 import org.openstreetmap.josm.plugins.nl_pdok_report.gui.ReportNewDialog;
 import org.openstreetmap.josm.plugins.nl_pdok_report.gui.reportinfo.ReportInfoPanel;
-import org.openstreetmap.josm.plugins.nl_pdok_report.utils.api.JsonNewReportEncoder;
 import org.openstreetmap.josm.tools.Logging;
 
 /**
